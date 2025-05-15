@@ -1,13 +1,12 @@
 import React from 'react'
-import { Header } from '../components/Header'
-import { Hero } from '../components/Hero'
+import { Header, Hero, AuctionsPreview } from '../components/LandingPage'
 
 export default function LandingPage() {
   return (
     <>
       <Header />
       <Hero />
-      {/* kasneje: še kakšne FeatureSection, Footer … */}
+      <AuctionsPreview />
     </>
   )
 }

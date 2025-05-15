@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import logoSrc from '../assets/react.svg'
-import { theme } from '../styles/theme'
+import logoSrc from '../../assets/logo.png'
+import { theme } from '../../styles/theme'
+import { Button } from '../Button'
 
 const Wrapper = styled.header`
   display: flex;
@@ -12,8 +13,9 @@ const Wrapper = styled.header`
 `
 
 const Logo = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 64px;
+  height: 64px;
+  gap: 32px;
 `
 
 const Nav = styled.nav`
@@ -25,30 +27,16 @@ const Nav = styled.nav`
   color: ${theme.colors.secondary};
 `
 
-// Log in kot link
+
 const LinkButton = styled.button`
   background: none;
   border: none;
   padding: 0;
   font: inherit;        
-  font-weight: bold;    
+  font-weight: 700;    
   cursor: pointer;
   color: ${theme.colors.secondary};
   &:hover { text-decoration: underline; }
-`
-
-// Sign Up kot temni "pill"
-const DarkButton = styled.button`
-  height: 40px;
-  padding: 8px 16px;
-  border-radius: 16px;
-  background: ${theme.colors.secondary};  /* #161817 */
-  color: ${theme.colors.white};           /* #ffffff */
-  font-family: ${theme.font.family};
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
 `
 
 const Separator = styled.span`
@@ -63,9 +51,9 @@ export const Header: React.FC = () => (
         Log in
       </LinkButton>
       <Separator>or</Separator>
-      <DarkButton onClick={() => {/* goto /register */}}>
+      <Button variant='secondary' onClick={() => {/* goto /register */}}>
         Sign Up
-      </DarkButton>
+      </Button>
     </Nav>
   </Wrapper>
 )

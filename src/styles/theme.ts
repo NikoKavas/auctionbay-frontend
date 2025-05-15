@@ -10,9 +10,9 @@ export const theme = {
   font: {
     family: "'Inter', sans-serif",
     sizes: {
-      h1: '3rem',
+      h1: '64px',
       h2: '2rem',
-      body: '1rem',
+      body: '16px',
     }
   }
 }
