@@ -8,7 +8,7 @@ export const theme = {
     gray:      '#898B8A',
     lightGray: '#DDDCD7',
     white:     '#FFFFFF',
-    background:'#F9FAFB',
+    background:'#F6F6F4',
   },
   font: {
     family: "'Inter', sans-serif",

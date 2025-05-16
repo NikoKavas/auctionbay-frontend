@@ -1,71 +1,161 @@
 // src/pages/RegisterPage.tsx
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import gridImage from '../assets/registerframe.png'
 import { InputField } from '../components/Form/InputField'
 import { Button } from '../components/Button'
-import sampleImage from '../assets/registerframe.png'
 
-const Container = styled.div`
+export default function RegisterPage() {
+  return (
+    <PageWrapper>
+      <LeftGrid>
+        <Image src={gridImage} alt="Product grid" />
+      </LeftGrid>
+
+      <RightGrid>
+        <Card>
+          <CardInner>
+            <Logo>a</Logo>
+
+            <FormSection>
+              <Title>Hello!</Title>
+              <Subtitle>Please enter your details</Subtitle>
+
+              <NameRow>
+                <InputField label="Name" placeholder="Placeholder" />
+                <InputField label="Surname" placeholder="Placeholder" />
+              </NameRow>
+
+              <InputField label="E-mail" placeholder="Placeholder" />
+              <InputField label="Password" type="password" placeholder="Placeholder" />
+              <InputField label="Repeat password" type="password" placeholder="Placeholder" />
+
+              <FullWidthButton variant="primary">
+                Sign up
+              </FullWidthButton>
+            </FormSection>
+
+            <Footer>
+              <span>Already have an account?</span>
+              <StyledLink to="/login">Log in</StyledLink>
+            </Footer>
+          </CardInner>
+        </Card>
+      </RightGrid>
+    </PageWrapper>
+  )
+}
+
+// 1) Zunanja mreža: 12 stolpcev, 100vh
+const PageWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  min-height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
+  background: #F6F6F4;
+`
+
+// 2) Levi del: "span 8"
+const LeftGrid = styled.div`
+  grid-column: 1 / span 8;
+  background: #F6F6F4;
+  overflow: hidden;
+`
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`
+
+// 3) Desni del: "span 4", centrirana kartica
+const RightGrid = styled.div`
+  grid-column: 9 / span 4;
   display: flex;
-  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  /* background: transparent; */ /* kartica bo bela, okolica pa #F6F6F4 */
 `
 
-const Left = styled.div`
-  flex: 1;
-  background: url(${sampleImage}) center/cover no-repeat;
+const Card = styled.div`
+  background: #FFFFFF;
+  border-radius: 32px;
+  width: 464px;
+  height: 1008px; /* po Figma: 1024px minus robovi */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
-const Right = styled.div`
-  flex: 0 0 400px; /* prilagodi po Figma: to je širina form-e */
-  background: ${({ theme }) => theme.colors.white};
-  padding: 64px 32px;
+const CardInner = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 64px 32px;
+  height: 100%;
+  width: 100%;
 `
 
 const Logo = styled.div`
   width: 64px;
   height: 64px;
-  margin: 0 auto 32px;
-  background: ${({ theme }) => theme.colors.primary};
+  margin: 0 auto;
+  background: #F4FF47;
   border-radius: 50%;
-  /* tukaj lahko vstavimo tvoj SVG kot background-image,  
-     ali pa <img> komponento, kot rabiš */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #071015;
+`
+
+const FormSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 384px;
+  margin: 0 auto;
 `
 
 const Title = styled.h1`
   margin: 0;
-  text-align: center;
   font-size: ${({ theme }) => theme.font.sizes.h2};
   font-weight: 700;
+  text-align: center;
 `
 
 const Subtitle = styled.p`
-  margin: 8px 0 32px;
-  text-align: center;
+  margin: 0;
   font-size: ${({ theme }) => theme.font.sizes.body};
   color: ${({ theme }) => theme.colors.secondary};
+  text-align: center;
   opacity: 0.7;
 `
 
-const FieldRow = styled.div`
+const NameRow = styled.div`
   display: flex;
   gap: 16px;
-  margin-bottom: 16px;
+
+  > div {
+    flex: 1;
+  }
 `
 
-const FullWidth = styled.div`
+const FullWidthButton = styled(Button)`
   width: 100%;
-  margin-bottom: 24px;
+  height: 40px;
+  border-radius: 16px;
 `
 
-const FooterText = styled.p`
-  text-align: center;
-  margin-top: 32px;
+const Footer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 4px;
   font-size: ${({ theme }) => theme.font.sizes.body};
   color: ${({ theme }) => theme.colors.secondary};
+
   a {
     font-weight: 600;
     color: ${({ theme }) => theme.colors.secondary};
@@ -73,47 +163,5 @@ const FooterText = styled.p`
   }
 `
 
-export default function RegisterPage() {
-  return (
-    <Container>
-      <Left />
+const StyledLink = styled(Link)``
 
-      <Right>
-        <Logo />
-        <Title>Hello!</Title>
-        <Subtitle>Please enter your details</Subtitle>
-
-        <FieldRow>
-          <InputField label="Name" placeholder="Placeholder" />
-          <InputField label="Surname" placeholder="Placeholder" />
-        </FieldRow>
-
-        <FullWidth>
-          <InputField label="E-mail" placeholder="Placeholder" />
-        </FullWidth>
-
-        <FullWidth>
-          <InputField
-            label="Password"
-            type="password"
-            placeholder="Placeholder"
-          />
-        </FullWidth>
-
-        <FullWidth>
-          <InputField
-            label="Repeat password"
-            type="password"
-            placeholder="Placeholder"
-          />
-        </FullWidth>
-
-        <Button variant="primary">Sign up</Button>
-
-        <FooterText>
-          Already have an account? <a href="/login">Log in</a>
-        </FooterText>
-      </Right>
-    </Container>
-  )
-}

@@ -1,4 +1,3 @@
-// src/components/Form/InputField.styles.ts
 import styled, { css } from 'styled-components'
 import { theme } from '../../styles/theme'
 
@@ -13,9 +12,8 @@ export const FieldWrapper = styled.div<WrapperProps>`
   align-items: flex-start;
   gap: 8px;
 
-  width: 320px;
+  width: 100%;
 
-  /* border and background depend on state */
   border: 1px solid ${theme.colors.lightGray};
   border-radius: 16px;
   background: ${theme.colors.white};

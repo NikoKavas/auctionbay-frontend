@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import logoSrc from '../../assets/logo.png'
 import { theme } from '../../styles/theme'
 import { Button } from '../Button'
+import { useNavigate } from 'react-router-dom'
 
 const Wrapper = styled.header`
   display: flex;
@@ -43,17 +44,21 @@ const Separator = styled.span`
   color: ${theme.colors.secondary};
 `
 
-export const Header: React.FC = () => (
-  <Wrapper>
-    <Logo src={logoSrc} alt="AuctionBay logo" />
-    <Nav>
-      <LinkButton onClick={() => {/* goto /login */}}>
-        Log in
-      </LinkButton>
-      <Separator>or</Separator>
-      <Button variant='secondary' onClick={() => {/* goto /register */}}>
-        Sign Up
-      </Button>
-    </Nav>
-  </Wrapper>
-)
+export const Header: React.FC = () => {
+  const navigate = useNavigate()
+
+  return (
+    <Wrapper>
+      <Logo src={logoSrc} alt="AuctionBay logo" />
+      <Nav>
+        <LinkButton onClick={() => navigate('/login')}>
+          Log in
+        </LinkButton>
+        <Separator>or</Separator>
+        <Button variant='secondary' onClick={() => navigate('/signup')}>
+          Sign Up
+        </Button>
+      </Nav>
+    </Wrapper>
+  )
+}

@@ -1,4 +1,3 @@
-// src/components/Button.tsx
 import styled, { css } from 'styled-components'
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'alternative'
