@@ -4,7 +4,6 @@ import { Button } from '../Button'
 import { theme } from '../../styles/theme'   
 
 const Section = styled.section`
-  width: 100%;               
   text-align: center;
   padding: 64px 32px;         
   background: ${theme.colors.white};

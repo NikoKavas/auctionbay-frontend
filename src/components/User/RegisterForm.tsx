@@ -1,12 +1,18 @@
 // src/pages/RegisterPage.tsx
 import React from 'react'
+import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import gridImage from '../assets/registerframe.png'
-import { InputField } from '../components/Form/InputField'
-import { Button } from '../components/Button'
+import gridImage from '../../assets/registerframe.png'
+import { InputField } from '../Form/InputField'
+import { Button } from '../Button'
+import logoImg from '../../assets/logo.png'
+import { useRegister } from '../../hooks/useRegister'
+import { Controller } from 'react-hook-form'
 
-export default function RegisterPage() {
+const RegisterForm: FC = () => {
+  const { control, onSubmit, errors, loading, error } = useRegister()
+
   return (
     <PageWrapper>
       <LeftGrid>
@@ -16,23 +22,57 @@ export default function RegisterPage() {
       <RightGrid>
         <Card>
           <CardInner>
-            <Logo>a</Logo>
+            <Logo src={logoImg} alt="AuctionBay logo" />
 
-            <FormSection>
-              <Title>Hello!</Title>
-              <Subtitle>Please enter your details</Subtitle>
+            <FormSection onSubmit={onSubmit}>
+              <TitleBlock>
+                <Title>Hello!</Title>
+                <Subtitle>Please enter your details</Subtitle>
+              </TitleBlock>
 
               <NameRow>
-                <InputField label="Name" placeholder="Placeholder" />
-                <InputField label="Surname" placeholder="Placeholder" />
+                <Controller
+                  control={control}
+                  name="first_name"
+                  render={({ field }) => (
+                    <InputField label="Name" placeholder="Name" {...field} />
+                  )}
+                />
+                <Controller
+                  control={control}
+                  name="last_name"
+                  render={({ field }) => (
+                    <InputField label="Surname" placeholder="Surname" {...field} />
+                  )}
+                />
               </NameRow>
 
-              <InputField label="E-mail" placeholder="Placeholder" />
-              <InputField label="Password" type="password" placeholder="Placeholder" />
-              <InputField label="Repeat password" type="password" placeholder="Placeholder" />
+              <Controller
+                control={control}
+                name="email"
+                render={({ field }) => (
+                  <InputField label="E-mail" placeholder="E-mail" {...field} />
+                )}
+              />
 
-              <FullWidthButton variant="primary">
-                Sign up
+              <Controller
+                control={control}
+                name="password"
+                render={({ field }) => (
+                  <InputField label="Password" type="password" placeholder="Password" {...field} />
+                )}
+              />
+
+              <Controller
+                control={control}
+                name="confirm_password"
+                render={({ field }) => (
+                  <InputField label="Repeat password" type="password" placeholder="Repeat password" {...field} />
+                )}
+              />
+
+              <FullWidthButton type="submit" variant="primary">
+                {loading ? 'Signing up...' : 'Sign up'}
               </FullWidthButton>
             </FormSection>
 
@@ -47,7 +87,9 @@ export default function RegisterPage() {
   )
 }
 
-// 1) Zunanja mreža: 12 stolpcev, 100vh
+export default RegisterForm
+
+
 const PageWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -55,9 +97,9 @@ const PageWrapper = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   background: #F6F6F4;
+  overflow: hidden;
 `
 
-// 2) Levi del: "span 8"
 const LeftGrid = styled.div`
   grid-column: 1 / span 8;
   background: #F6F6F4;
@@ -70,7 +112,6 @@ const Image = styled.img`
   object-fit: cover;
 `
 
-// 3) Desni del: "span 4", centrirana kartica
 const RightGrid = styled.div`
   grid-column: 9 / span 4;
   display: flex;
@@ -83,7 +124,7 @@ const Card = styled.div`
   background: #FFFFFF;
   border-radius: 32px;
   width: 464px;
-  height: 1008px; /* po Figma: 1024px minus robovi */
+  height: 1008px; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,25 +139,30 @@ const CardInner = styled.div`
   width: 100%;
 `
 
-const Logo = styled.div`
+const Logo = styled.img`
   width: 64px;
   height: 64px;
-  margin: 0 auto;
-  background: #F4FF47;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: #071015;
+  display: block;
+  margin: 0 auto;
+  margin-top: 64px;
+  object-fit: cover;
 `
 
-const FormSection = styled.div`
+const FormSection = styled.form`
   display: flex;
   flex-direction: column;
   gap: 32px;
   width: 384px;
-  margin: 0 auto;
+  margin: 0 auto; 
+`
+
+const TitleBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 8px;
 `
 
 const Title = styled.h1`
@@ -153,6 +199,7 @@ const Footer = styled.div`
   display: flex;
   justify-content: center;
   gap: 4px;
+  margin-bottom: 64px;
   font-size: ${({ theme }) => theme.font.sizes.body};
   color: ${({ theme }) => theme.colors.secondary};
 

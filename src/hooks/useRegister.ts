@@ -54,6 +54,7 @@ export function useRegister() {
   const onSubmit = handleSubmit(async (data) => {
     setLoading(true)
     setError(null)
+    console.log("✅ SUBMITTING", data)
     try {
       const newUser = await registerApi({
         first_name:      data.first_name,
@@ -69,6 +70,6 @@ export function useRegister() {
       setLoading(false)
     }
   })
-
+console.log("❌ ERRORS", errors)
   return { control, errors, onSubmit, loading, error, user }
 }

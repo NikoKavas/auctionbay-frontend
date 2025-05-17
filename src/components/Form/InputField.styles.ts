@@ -11,32 +11,9 @@ export const FieldWrapper = styled.div<WrapperProps>`
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-
   width: 100%;
 
-  border: 1px solid ${theme.colors.lightGray};
-  border-radius: 16px;
-  background: ${theme.colors.white};
-
-  /* Hover */
-  &:hover {
-    border-color: ${theme.colors.gray};
-  }
-
-  /* Focused / Active */
-  ${p =>
-    p.focused &&
-    css`
-      border-color: ${theme.colors.primary};
-    `}
-
-  /* Filled but not focused: keep default border (lightGray) */
-  ${p =>
-    p.filled &&
-    !p.focused &&
-    css`
-      /* no extra styling, but could e.g. change label color */
-    `}
+  
 `
 
 export const StyledLabel = styled.label`
@@ -46,8 +23,11 @@ export const StyledLabel = styled.label`
   line-height: 24px;
   color: ${theme.colors.secondary};
 `
-
-export const StyledInput = styled.input`
+  interface InputProps {
+    filled: boolean
+  }
+  
+export const StyledInput = styled.input.attrs({})<React.InputHTMLAttributes<HTMLInputElement>>`
   box-sizing: border-box;
   width: 100%;
   padding: 8px 16px;
@@ -57,11 +37,38 @@ export const StyledInput = styled.input`
   line-height: 24px;
   color: ${theme.colors.secondary};
 
-  background: transparent;
-  border: none;
+  background: ${theme.colors.white};
+  border: 1px solid ${theme.colors.lightGray};
+  border-radius: 16px;
   outline: none;
+
+  &:hover {
+    border-color: ${theme.colors.gray};
+  }
+
+  &:focus {
+    border-color: ${theme.colors.primary};
+  }
 
   &::placeholder {
     color: ${theme.colors.gray};
+  }
+   
+  &.filled {
+    font-weight: 500;
+  }
+`
+export const TogglePasswordIcon = styled.img`
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 0.8;
   }
 `

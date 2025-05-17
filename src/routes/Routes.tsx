@@ -18,7 +18,7 @@ type AppRoute = {
 
 // lazy-naloži stran
 const LandingPage = lazy(() => import('../pages/LandingPage'))
-const RegisterPage = lazy(() => import('../pages/RegisterPage'))
+const RegisterPage = lazy(() => import('../pages/Register'))
 //const LoginPage    = lazy(() => import('../pages/LoginPage'))
 
 export const appRoutes: AppRoute[] = [

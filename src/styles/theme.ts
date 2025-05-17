@@ -3,10 +3,10 @@ import 'styled-components'
 
 export const theme = {
   colors: {
-    primary:   '#F2FF47',
+    primary:   '#F4FF47',
     secondary: '#161817',
-    gray:      '#898B8A',
-    lightGray: '#DDDCD7',
+    gray:      '#B0BFBD',
+    lightGray: '#DDE9E6',
     white:     '#FFFFFF',
     background:'#F6F6F4',
   },
