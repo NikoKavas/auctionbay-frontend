@@ -18,13 +18,13 @@ type AppRoute = {
 
 // lazy-naloži stran
 const LandingPage = lazy(() => import('../pages/LandingPage'))
-const RegisterPage = lazy(() => import('../pages/Register'))
-//const LoginPage    = lazy(() => import('../pages/LoginPage'))
+const Register = lazy(() => import('../pages/Register'))
+const Login = lazy(() => import('../pages/Login'))
 
 export const appRoutes: AppRoute[] = [
   { path: '/',        type: RouteType.PUBLIC,     element: <LandingPage /> },
-  { path: '/signup',  type: RouteType.RESTRICTED, element: <RegisterPage /> },
-//  { path: '/login',   type: RouteType.RESTRICTED, element: <LoginPage /> },
+  { path: '/signup',  type: RouteType.RESTRICTED, element: <Register /> },
+  { path: '/login',   type: RouteType.RESTRICTED, element: <Login /> },
   // tukaj v bodoče lahko dodaš PRIVATE poti...
 ]
 
