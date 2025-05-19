@@ -150,3 +150,19 @@ export const StyledForgotPassword = styled(Link)`
     text-decoration: underline;
   }
 `
+
+export const BackToLogin = styled(Link)`
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+    	
+  font-size: 12px;
+  font-weight: 300;
+  color: #74817F;
+  text-decoration: none;
+
+  img {
+    display: block;
+  }
+`
