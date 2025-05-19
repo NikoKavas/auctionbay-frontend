@@ -35,14 +35,18 @@ const RegisterForm: FC = () => {
                   control={control}
                   name="first_name"
                   render={({ field }) => (
-                    <InputField label="Name" placeholder="Name" {...field} />
+                    <InputField label="Name" placeholder="Name" {...field} 
+                    error={errors.first_name?.message}
+                    />
                   )}
                 />
                 <Controller
                   control={control}
                   name="last_name"
                   render={({ field }) => (
-                    <InputField label="Surname" placeholder="Surname" {...field} />
+                    <InputField label="Surname" placeholder="Surname" {...field}
+                    error={errors.last_name?.message}
+                    />
                   )}
                 />
               </NameRow>
@@ -51,7 +55,11 @@ const RegisterForm: FC = () => {
                 control={control}
                 name="email"
                 render={({ field }) => (
-                  <InputField label="E-mail" placeholder="E-mail" {...field} />
+                  <InputField label="E-mail" 
+                  placeholder="E-mail" 
+                  {...field} 
+                  error={errors.email?.message}
+                  />
                 )}
               />
 
@@ -59,7 +67,12 @@ const RegisterForm: FC = () => {
                 control={control}
                 name="password"
                 render={({ field }) => (
-                  <InputField label="Password" type="password" placeholder="Password" {...field} />
+                  <InputField label="Password" 
+                  type="password" 
+                  placeholder="Password" 
+                  {...field} 
+                  error={errors.password?.message}
+                  />
                 )}
               />
 
@@ -67,13 +80,20 @@ const RegisterForm: FC = () => {
                 control={control}
                 name="confirm_password"
                 render={({ field }) => (
-                  <InputField label="Repeat password" type="password" placeholder="Repeat password" {...field} />
+                  <InputField 
+                  label="Repeat password" 
+                  type="password" 
+                  placeholder="Repeat password" 
+                  {...field} 
+                  error={errors.confirm_password?.message}
+                  />
                 )}
               />
 
               <FullWidthButton type="submit" variant="primary">
                 {loading ? 'Signing up...' : 'Sign up'}
               </FullWidthButton>
+              {error && <ServerError>{error}</ServerError>}
             </FormSection>
 
             <Footer>
@@ -212,3 +232,9 @@ const Footer = styled.div`
 
 const StyledLink = styled(Link)``
 
+const ServerError = styled.div`
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin-top: -16px;
+`

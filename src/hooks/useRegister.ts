@@ -17,13 +17,13 @@ export interface RegisterFormValues {
 
 export function useRegister() {
   const schema = Yup.object({
-    first_name:       Yup.string().required(),
-    last_name:        Yup.string().required(),
+    first_name:       Yup.string().required('First name is required'),
+    last_name:        Yup.string().required('Last name is required'),
     email:            Yup.string().email('Invalid email').required('Email is required'),
     password:         Yup.string()
                          .matches(
                            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/,
-                           'Password must be at least 6 chars, include upper+lower+number'
+                           'Password must be at least 6 characters, include upper, lower letters and a number'
                          )
                          .required('Password is required'),
     confirm_password: Yup.string()
@@ -65,7 +65,7 @@ export function useRegister() {
       })
       setUser(newUser)
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Registration failed')
+      setError(err.response?.data?.message || err.message || 'Something went wrong')
     } finally {
       setLoading(false)
     }

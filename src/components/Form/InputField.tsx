@@ -1,12 +1,14 @@
 import React, { type InputHTMLAttributes, useState } from 'react'
 import { FieldWrapper, StyledInput, StyledLabel, TogglePasswordIcon } from './InputField.styles'
 import eyeIcon from '../../assets/eye.png'
+import { styled } from 'styled-components'
 
 interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
+  error?: string
 }
 
-export const InputField: React.FC<InputFieldProps> = ({ label, type, value, onChange, ...props }) => {
+export const InputField: React.FC<InputFieldProps> = ({ label, type, value, onChange, error, ...props }) => {
   const [focused, setFocused] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
@@ -24,6 +26,8 @@ export const InputField: React.FC<InputFieldProps> = ({ label, type, value, onCh
           onChange={onChange}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
+          filled={filled}
+          error={error}
         />
         {isPassword && (
           <TogglePasswordIcon
@@ -33,6 +37,13 @@ export const InputField: React.FC<InputFieldProps> = ({ label, type, value, onCh
           />
         )}
       </div>
+       {error && <ErrorText>{error}</ErrorText>}
     </FieldWrapper>
   )
 }
+
+const ErrorText = styled.div`
+  font-size: 12px;
+  color: red;
+  margin-top: 4px;
+`

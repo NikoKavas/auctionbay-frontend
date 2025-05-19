@@ -26,8 +26,13 @@ export const StyledLabel = styled.label`
   interface InputProps {
     filled: boolean
   }
-  
-export const StyledInput = styled.input.attrs({})<React.InputHTMLAttributes<HTMLInputElement>>`
+
+
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  error?: string
+}
+
+export const StyledInput = styled.input.attrs({})<InputProps>`
   box-sizing: border-box;
   width: 100%;
   padding: 8px 16px;
@@ -38,12 +43,11 @@ export const StyledInput = styled.input.attrs({})<React.InputHTMLAttributes<HTML
   color: ${theme.colors.secondary};
 
   background: ${theme.colors.white};
-  border: 1px solid ${theme.colors.lightGray};
-  border-radius: 16px;
+  border: 1px solid ${({ error }) => error ? 'red' : theme.colors.lightGray};  border-radius: 16px;
   outline: none;
 
   &:hover {
-    border-color: ${theme.colors.gray};
+    border-color: ${({ error }) => error ? 'red' : theme.colors.gray};
   }
 
   &:focus {
