@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 
 import { login as loginApi, fetchUser } from '../services/user'
 import type { UserType } from '../types/user'
+import authStore from '../stores/auth.store'
 
 export interface LoginFormValues {
   email: string
@@ -42,7 +43,7 @@ export function useLogin() {
 
       // 3b. GET /auth/me
       const me = await fetchUser()
-      setUser(me)
+      authStore.login(me);
     } catch (err: any) {
       setError(err.response?.data?.message || 'Login failed')
     } finally {
@@ -60,7 +61,7 @@ export function useLogin() {
     loading,
     error,
 
-    // po uspehu
-    user,
+
+    
   }
 }

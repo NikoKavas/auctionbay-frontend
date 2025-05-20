@@ -21,8 +21,8 @@ class AuthStore {
   }
 
   signout() {
-    userStorage.clearUser()
-    this.user = undefined
+    this.user = null;
+    userStorage.clearUser();
   }
 }
 
