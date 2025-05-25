@@ -31,7 +31,6 @@ export function useLogin() {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [user, setUser] = useState<UserType | null>(null)
 
   // 3. onSubmit: najprej klicemo /auth/login, potem /auth/me
   const onSubmit = handleSubmit(async (data) => {
@@ -60,7 +59,7 @@ export function useLogin() {
     // za UI state
     loading,
     error,
-
+    user: authStore.user, // uporabimo authStore za pridobitev uporabnika
 
     
   }

@@ -1,7 +1,7 @@
 // src/pages/RegisterPage.tsx
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import gridImage from '../../assets/registerframe.png'
 import { InputField } from '../Form/InputField'
@@ -16,7 +16,15 @@ import { useRegister } from '../../hooks/useRegister'
 import { Controller } from 'react-hook-form'
 
 const RegisterForm: FC = () => {
-  const { control, onSubmit, errors, loading, error } = useRegister()
+  const { control, onSubmit, errors, loading, error, user } = useRegister()
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user) {
+      navigate('/profile', { replace: true})
+    }
+  }, [user, navigate])
 
   return (
     <PageWrapper>

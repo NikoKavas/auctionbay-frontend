@@ -9,7 +9,6 @@ import authStore from './stores/auth.store'
 
 export default function App() {
   useEffect(() => {
-    // ob initial renderju probamo pobrati /auth/me  
     fetchUser()
       .then((me) => authStore.login(me))
       .catch(() => authStore.signout())

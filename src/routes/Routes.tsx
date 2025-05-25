@@ -18,15 +18,18 @@ type AppRoute = {
 
 // lazy-naloži stran
 const LandingPage = lazy(() => import('../pages/LandingPage'))
-const Register = lazy(() => import('../pages/Register'))
-const Login = lazy(() => import('../pages/Login'))
-const ForgotPassword = lazy(() => import('../pages/ForgotPassword'))
+const Register = lazy(() => import('../pages/auth/Register'))
+const Login = lazy(() => import('../pages/auth/Login'))
+const ForgotPassword = lazy(() => import('../pages/auth/ForgotPassword'))
+//const Auctions       = lazy(() => import('../pages/Auctions'))
+const Profile        = lazy(() => import('../pages/Profile'))
 
 export const appRoutes: AppRoute[] = [
   { path: '/',        type: RouteType.PUBLIC,     element: <LandingPage /> },
   { path: '/signup',  type: RouteType.RESTRICTED, element: <Register /> },
   { path: '/login',   type: RouteType.RESTRICTED, element: <Login /> },
   { path: '/forgot-password', type: RouteType.RESTRICTED, element: <ForgotPassword /> },
+  { path: '/profile',       type: RouteType.PRIVATE,    element: <Profile /> },
 ]
 
 export const AppRoutes: React.FC = () => (

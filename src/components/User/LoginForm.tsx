@@ -1,4 +1,3 @@
-import React from 'react'
 import { FC } from 'react'
 import { Controller } from 'react-hook-form'
 import { InputField } from '../Form/InputField'
@@ -13,9 +12,19 @@ import {
   ForgotPasswordWrapper,
     StyledForgotPassword
 } from '../Form/FormLayout'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 
 const LoginForm: FC = () => {
-  const { control, onSubmit, errors, loading, error } = useLogin()
+  const { control, onSubmit, errors, loading, error, user } = useLogin()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user) {
+      navigate('/profile', { replace: true})
+    }
+  }, [user, navigate])
 
   return (
     <PageWrapper>
@@ -72,4 +81,4 @@ const LoginForm: FC = () => {
   )
 }
 
-export default LoginForm
+export default observer(LoginForm)

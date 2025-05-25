@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite'
 
 const RestrictedRoute: FC<RouteProps> = ({ children }) => {
   if (authStore.user) {
-    return <Navigate to="/" replace />
+    return <Navigate to="/profile" replace />
   }
   return <>{children}</>
 }
