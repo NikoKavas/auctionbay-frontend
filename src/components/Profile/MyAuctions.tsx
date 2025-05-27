@@ -8,24 +8,37 @@ const AuctionsGrid = styled.div`
   grid-template-columns: repeat(12, 1fr);
   gap: 24px;
   width: 100%;
+  
 `
 
 const EmptyState = styled.div`
-  grid-column: 1 / -1;     /* zavzame celotno širino 12-stolpčnega grida */
-  text-align: center;
+  grid-column: 1 / -1;
+
+  /* Center vse skupaj */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
   padding: 100px 0;
+  margin: 24px auto 0;
 
   h2 {
     margin: 0 0 8px;
-    font-size: ${({ theme }) => theme.font.sizes.h3};
-    color: ${({ theme }) => theme.colors.primary};
+    font-size: ${({ theme }) => theme.font.sizes.h2};
+    color: ${({ theme }) => theme.colors.secondary};
+    /* noben wrap, da ostane v eni vrstici */
+    white-space: nowrap;
   }
+
   p {
     margin: 0;
+    /* omeji največjo širino, da ne teče do samih robov */
+    max-width: 600px;
     font-size: ${({ theme }) => theme.font.sizes.body};
     color: ${({ theme }) => theme.colors.secondary};
     opacity: 0.7;
-  }
+    text-align: center;
 `
 
 export const MyAuctions: React.FC = () => {
@@ -36,7 +49,7 @@ export const MyAuctions: React.FC = () => {
 
   if (data.length === 0) {
     return (
-      <AuctionsGrid>
+      
         <EmptyState>
           <h2>Oh no, no auctions added!</h2>
           <p>
@@ -44,7 +57,7 @@ export const MyAuctions: React.FC = () => {
             new auctions will appear here!
           </p>
         </EmptyState>
-      </AuctionsGrid>
+     
     )
   }
 

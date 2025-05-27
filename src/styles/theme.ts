@@ -1,4 +1,3 @@
-// src/styles/theme.ts
 import 'styled-components'
 
 export const theme = {
@@ -7,6 +6,7 @@ export const theme = {
     secondary: '#161817',
     gray:      '#B0BFBD',
     lightGray: '#DDE9E6',
+    darkGray:  '#272D2D',
     white:     '#FFFFFF',
     background:'#F6F6F4',
   },
@@ -27,6 +27,7 @@ declare module 'styled-components' {
       secondary: string
       gray: string
       lightGray: string
+      darkGray: string
       white: string
       background: string
     }

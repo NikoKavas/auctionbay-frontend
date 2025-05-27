@@ -6,7 +6,7 @@ export const TabsContainer = styled.div`
   align-items: flex-start;
   padding: 4px;
   gap: 8px;
-
+  margin: 24px auto 0;
   /* glede na Figma: */
   width: 402px;
   height: 48px;
@@ -31,12 +31,11 @@ export const TabButton = styled.button<{ active?: boolean }>`
   border-radius: 16px;
   background: ${({ active }) => (active ? '#272D2D' : '#EDF4F2')};
   color: ${({ active }) => (active ? '#FFFFFF' : '#272D2D')};
-
+  font-family: ${({ theme }) => theme.font.family};
   font-size: ${({ theme }) => theme.font.sizes.body};
   font-weight: 500;
   cursor: pointer;
 
-  /* Flex properties from Figma: */
   flex: none;
   order: 0;
   flex-grow: 0;

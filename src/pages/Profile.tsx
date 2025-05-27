@@ -16,7 +16,7 @@ const Profile: React.FC = () => {
     <>
       <Navbar />                                            {/* ← vstaviš Navbar sem */}
       <ProfileWrapper>
-        <h1>Hello {authStore.user?.first_name}!</h1>
+        <h1>Hello {authStore.user?.first_name } {authStore.user?.last_name }!</h1>
 
         <ProfileTabs active={tab} onChange={setTab} />
 
