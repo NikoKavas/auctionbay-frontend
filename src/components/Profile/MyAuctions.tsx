@@ -1,14 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useMyAuctions } from '../../hooks/useMyAuctions'
+import { AuctionCard } from '../AuctionCard'
 
 // Grid že določen v ProfileContent, tukaj pa tvorimo wrapper
 const AuctionsGrid = styled.div`
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 24px;
   width: 100%;
   
+`
+const CardWrapper = styled.div`
+  grid-column: span 2;
 `
 
 const EmptyState = styled.div`
@@ -64,10 +69,9 @@ export const MyAuctions: React.FC = () => {
   return (
     <AuctionsGrid>
       {data.map((auc) => (
-        <div key={auc.id} style={{ gridColumn: 'span 2' }}>
-          {/* tu bo tvoja <AuctionCard auction={auc}/> */}
-          AuctionCard goes here
-        </div>
+        <CardWrapper key={auc.id}>
+          <AuctionCard auction={auc} />
+        </CardWrapper>
       ))}
     </AuctionsGrid>
   )
