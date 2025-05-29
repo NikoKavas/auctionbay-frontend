@@ -14,7 +14,7 @@ const Profile: React.FC = () => {
 
   return (
     <>
-      <Navbar />                                            {/* ← vstaviš Navbar sem */}
+      <Navbar />                                           
       <ProfileWrapper>
         <h1>Hello {authStore.user?.first_name } {authStore.user?.last_name }!</h1>
 

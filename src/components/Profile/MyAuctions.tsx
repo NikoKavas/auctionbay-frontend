@@ -10,7 +10,6 @@ const AuctionsGrid = styled.div`
   grid-template-columns: repeat(12, 1fr);
   gap: 24px;
   width: 100%;
-  
 `
 const CardWrapper = styled.div`
   grid-column: span 2;

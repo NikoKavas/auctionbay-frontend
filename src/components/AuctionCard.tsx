@@ -2,12 +2,16 @@
 import React from 'react'
 import styled from 'styled-components'
 import type { AuctionType } from '../types/auction'
+import { TimeTag } from './Tags/TimeTag'
+import { getRemainingHours } from '../utils/time'
+import { Tag, TagVariant } from './Tags/Tag'
 
 interface Props {
   auction: AuctionType
 }
 
 const Card = styled.div`
+  min-height: 250px;
   background: white;
   border-radius: 16px;
   display: flex;
@@ -25,26 +29,31 @@ const Header = styled.div`
 const Title = styled.h3`
   margin: 0;
   font-size: ${({ theme }) => theme.font.sizes.body};
-  color: ${({ theme }) => theme.colors.secondary};
+  color: #071015;
+  font-weight: 300;
+  line-height: 24px;
 `
 
 const Price = styled.div`
   margin-top: 4px;
   font-size: 1.125rem;
-  font-weight: bold;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.secondary};
+  line-height: 24px;
 `
 
 const ImageWrapper = styled.div`
   flex: 1;
   margin: 8px 0;
+  gap: 8px;
   overflow: hidden;
-  border-radius: 12px;
+  
 `
 const Img = styled.img`
   width: 100%;
-  height: auto;
+  max-height: 150px;
   object-fit: cover;
+  border-radius: 12px;
 `
 
 const Actions = styled.div`
@@ -62,24 +71,36 @@ const ActionButton = styled.button`
   font-size: ${({ theme }) => theme.font.sizes.body};
   cursor: pointer;
 `
-export const AuctionCard: React.FC<Props> = ({ auction }) => (
-  
-  <Card>
-    <Header>
+
+
+export const AuctionCard: React.FC<Props> = ({ auction }) => {
+  const hours = getRemainingHours(auction.endTime)
+  const statusVariant: TagVariant = hours > 0 ? 'inprogress' : 'done'
+
+  return (
+
+    <Card>
+      <Header>
+        <Tag variant={statusVariant}>
+          {statusVariant === 'inprogress' ? 'In progress' : 'Done'}
+        </Tag>
+       
+        {statusVariant === 'inprogress' && (
+          <TimeTag endTime={auction.endTime} />
+        )}
+        
+      </Header>
       <Title>{auction.title}</Title>
-      {/* placeholder za “remaining time” tag */}
-      <span>🕒 30h</span>
-    </Header>
+      <Price>{auction.startingBid.toFixed(0)} €</Price>
 
-    <Price>{auction.startingBid.toFixed(0)} €</Price>
+      <ImageWrapper>
+        <Img src={`${import.meta.env.VITE_API_URL || ''}/files/${auction.image}`} />
+      </ImageWrapper>
 
-    <ImageWrapper>
-      <Img src={`${import.meta.env.VITE_API_URL || ''}/files/${auction.image}`} />
-    </ImageWrapper>
-
-    <Actions>
-      <ActionButton>🗑️</ActionButton>
-      <ActionButton>Edit</ActionButton>
-    </Actions>
-  </Card>
-)
+      <Actions>
+        <ActionButton>🗑️</ActionButton>
+        <ActionButton>Edit</ActionButton>
+      </Actions>
+    </Card>
+  )
+}
