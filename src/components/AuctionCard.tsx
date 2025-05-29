@@ -8,6 +8,7 @@ import { Tag, TagVariant } from './Tags/Tag'
 
 interface Props {
   auction: AuctionType
+  hideActions?: boolean
 }
 
 const Card = styled.div`
@@ -123,7 +124,7 @@ const PencilIcon = () => (
   </svg>
 )
 
-export const AuctionCard: React.FC<Props> = ({ auction }) => {
+export const AuctionCard: React.FC<Props> = ({ auction, hideActions }) => {
   const hours = getRemainingHours(auction.endTime)
   const statusVariant: TagVariant = hours > 0 ? 'inprogress' : 'done'
 
@@ -147,7 +148,7 @@ export const AuctionCard: React.FC<Props> = ({ auction }) => {
         <Img src={`${import.meta.env.VITE_API_URL || ''}/files/${auction.image}`} />
       </ImageWrapper>
       
-       {statusVariant === 'inprogress' && (
+       {!hideActions && statusVariant === 'inprogress' && (
       <Actions>
         <DeleteButton>
             <TrashIcon />

@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useAllAuctions } from '../../hooks/useAuctions'
 import { AuctionCard } from '../AuctionCard'
 
-// Grid že določen v ProfileContent, tukaj pa tvorimo wrapper
 const AuctionsGrid = styled.div`
   grid-column: 1 / -1;
   display: grid;
@@ -69,7 +68,7 @@ export const Auctions: React.FC = () => {
     <AuctionsGrid>
       {data.map((auc) => (
         <CardWrapper key={auc.id}>
-          <AuctionCard auction={auc} />
+          <AuctionCard auction={auc} hideActions/>
         </CardWrapper>
       ))}
     </AuctionsGrid>

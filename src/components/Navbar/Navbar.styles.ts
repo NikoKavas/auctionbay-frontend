@@ -22,7 +22,36 @@ export const LeftGroup = styled.div`
 export const RightGroup = styled.div`
   display: flex;
   align-items: center;
-  gap: 32px;
+  padding: 4px;
+  gap: 8px;
+  
+
+
+  background: #FFFFFF;
+  border-radius: 32px;
+`
+
+export const PlusButton = styled.button`
+  /* CTA Button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  gap: 4px;
+
+  width: 56px;
+  height: 56px;
+
+  background: #F4FF47;
+  border: none;
+  border-radius: 32px;
+  cursor: pointer;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: #071015;
+  }
 `
 
 export const LogoLink = styled(Link)`
@@ -83,9 +112,21 @@ export const ActionButton = styled.button`
   cursor: pointer;
 `
 
-export const Avatar = styled.img`
-  width: 40px;
-  height: 40px;
+export const AvatarButton = styled.button`
+  /* Avatar kot gumb */
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: none;
   border-radius: 50%;
-  object-fit: cover;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `

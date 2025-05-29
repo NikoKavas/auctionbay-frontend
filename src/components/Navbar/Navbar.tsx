@@ -8,11 +8,11 @@ import {
   Tab,
   TabGroup,
   ActionButton,
-  Avatar,
+  AvatarButton,
+  PlusButton,
 } from './Navbar.styles'
 import logoSrc from '../../assets/logo.png'
-import plusSrc from '../../assets/plus.png'
-import avatarSrc from '../../assets/person.png'
+import avatarSrc from '../../assets/a.png'
 
 const Navbar: React.FC = () => {
   const current = window.location.pathname
@@ -54,10 +54,14 @@ const Navbar: React.FC = () => {
       </LeftGroup>
 
       <RightGroup>
-        <ActionButton type="button">
-          <img src={plusSrc} alt="New auction" width={24} height={24} />
-        </ActionButton>
-        <Avatar src={avatarSrc} alt="User avatar" />
+        <PlusButton type="button">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+          </svg>
+        </PlusButton>
+        <AvatarButton type="button" aria-label="User menu">
+          <img src={avatarSrc} alt="User avatar" />
+        </AvatarButton>
       </RightGroup>
     </Nav>
   )
