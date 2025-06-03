@@ -6,6 +6,7 @@ import { TimeTag } from '../Tags/TimeTag'
 import { FullWidthButton } from '../Form/FormLayout'
 import { InputField } from '../Form/InputField'
 import { fetchOneAuction, placeBid } from '../../services/auction'
+import authStore from '../../stores/auth.store'
 
 const Container = styled.div`
   display: flex;
@@ -190,18 +191,29 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
 
   const [bids, setBids] = useState<BidType[]>(auction.bids);
 
-  const highestBidAmount = auction.bids.length > 0
-    ? Math.max(...auction.bids.map((b) => b.amount))
-    : 0
+  const highestBidAmount = bids.length > 0
+   ? Math.max(...bids.map((b) => b.amount))
+   : 0
 
-  const minAllowedBid = highestBidAmount > 0
-    ? highestBidAmount + 1
-    : auction.startingBid + 1
+  const minAllowedBid = (highestBidAmount || auction.startingBid) + 1
+
+  const highestBid = bids.find(b => b.amount === highestBidAmount)
+  const hasUserBid = bids.some(b => b.userId === authStore.user?.id)
+  const iAmWinning = highestBid?.userId === authStore.user?.id
+
+  const isStillOpen = new Date(auction.endTime).getTime() > Date.now()
+
+  let tagVariant: 'inprogress' | 'winning' | 'outbid' | 'done'
+  if (!isStillOpen) {
+    tagVariant = 'done'
+  } else if (!hasUserBid) {
+    tagVariant = 'inprogress'
+  } else {
+    tagVariant = iAmWinning ? 'winning' : 'outbid'
+  }
 
   const [bidValue, setBidValue] = useState<number>(minAllowedBid)
   const [errorMsg, setErrorMsg] = useState<string | undefined>(undefined)
-
-  const isStillOpen = new Date(auction.endTime).getTime() > Date.now()
 
   const handleBidSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -217,7 +229,8 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
       const fresh = await fetchOneAuction(auction.id);
       setBids(fresh.bids);
 
-      setBidValue(minAllowedBid + 1);
+      const freshHighest = Math.max(...fresh.bids.map(b => b.amount))
+      setBidValue(freshHighest + 1)
       setErrorMsg(undefined);
     } catch (err: any) {
       setErrorMsg(err?.response?.data?.message || 'Bid failed');
@@ -243,8 +256,11 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
               marginBottom: '16px',
             }}
           >
-            <SlimTag variant={isStillOpen ? 'inprogress' : 'done'}>
-              {isStillOpen ? 'In progress' : 'Done'}
+            <SlimTag variant={tagVariant}>
+              {tagVariant === 'inprogress' ? 'In progress'
+                : tagVariant === 'winning'  ? 'Winning'
+                : tagVariant === 'outbid'   ? 'Outbid'
+                :                             'Done'}
             </SlimTag>
 
             {isStillOpen && <SlimTimeTag endTime={auction.endTime} />}
