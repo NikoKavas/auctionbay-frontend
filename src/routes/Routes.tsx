@@ -23,6 +23,7 @@ const Login = lazy(() => import('../pages/auth/Login'))
 const ForgotPassword = lazy(() => import('../pages/auth/ForgotPassword'))
 const Auctions       = lazy(() => import('../pages/Auctions'))
 const Profile        = lazy(() => import('../pages/Profile'))
+const AuctionDetail  = lazy(() => import('../pages/AuctionDetail'))
 
 export const appRoutes: AppRoute[] = [
   { path: '/',        type: RouteType.PUBLIC,     element: <LandingPage /> },
@@ -30,7 +31,8 @@ export const appRoutes: AppRoute[] = [
   { path: '/login',   type: RouteType.RESTRICTED, element: <Login /> },
   { path: '/forgot-password', type: RouteType.RESTRICTED, element: <ForgotPassword /> },
   { path: '/profile',       type: RouteType.PRIVATE,    element: <Profile /> },
-  { path: '/auctions',      type: RouteType.PRIVATE,    element: <Auctions /> }, // Auctions page is part of Profile
+  { path: '/auctions',      type: RouteType.PRIVATE,    element: <Auctions /> },
+  { path: '/auctions/:id', type: RouteType.PRIVATE, element: <AuctionDetail /> },
 ]
 
 export const AppRoutes: React.FC = () => (

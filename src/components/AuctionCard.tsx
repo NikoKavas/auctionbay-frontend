@@ -5,6 +5,7 @@ import type { AuctionType } from '../types/auction'
 import { TimeTag } from './Tags/TimeTag'
 import { getRemainingHours } from '../utils/time'
 import { Tag, TagVariant } from './Tags/Tag'
+import { Link } from 'react-router-dom'
 
 interface Props {
   auction: AuctionType
@@ -129,7 +130,7 @@ export const AuctionCard: React.FC<Props> = ({ auction, hideActions }) => {
   const statusVariant: TagVariant = hours > 0 ? 'inprogress' : 'done'
 
   return (
-
+    <Link to={`/auctions/${auction.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
     <Card>
       <Header>
         <Tag variant={statusVariant}>
@@ -160,5 +161,6 @@ export const AuctionCard: React.FC<Props> = ({ auction, hideActions }) => {
       </Actions>
       )}
     </Card>
+    </Link>
   )
 }

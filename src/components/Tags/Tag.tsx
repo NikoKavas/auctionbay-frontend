@@ -7,6 +7,7 @@ export type TagVariant = 'outbid' | 'winning' | 'inprogress' | 'done'
 interface Props {
   variant: TagVariant
   children: string
+  className?: string
 }
 
 const VARIANT_STYLES: Record<TagVariant, { bg: string; color: string }> = {
@@ -21,7 +22,6 @@ const StyledTag = styled.span<{ variant: TagVariant }>`
   align-items: center;
   justify-content: center;
 
-  /* padding = 2px vertikalno, 4px horizontalno */
   padding: 2px 4px;
   font-size: 10px;
   font-weight: 300;
@@ -37,6 +37,6 @@ const StyledTag = styled.span<{ variant: TagVariant }>`
   }}
 `
 
-export const Tag: React.FC<Props> = ({ variant, children }) => (
-  <StyledTag variant={variant}>{children}</StyledTag>
+export const Tag: React.FC<Props> = ({ variant, children, className }) => (
+  <StyledTag variant={variant} className={className}>{children}</StyledTag>
 )

@@ -5,6 +5,7 @@ import { getRemainingHours } from '../../utils/time'
 
 interface Props {
   endTime: string | number
+  className?: string
 }
 
 const Tag = styled.div<{ hot: boolean }>`
@@ -19,12 +20,12 @@ const Tag = styled.div<{ hot: boolean }>`
   color: ${({ hot }) => (hot ? '#071015' : '#071015')};
 `
 
-export const TimeTag: React.FC<Props> = ({ endTime }) => {
+export const TimeTag: React.FC<Props> = ({ endTime, className  }) => {
   const hours = getRemainingHours(endTime)
   const hot = hours <= 24 && hours > 0
 
   return (
-    <Tag hot={hot}>
+    <Tag hot={hot} className={className}>
       {hours}h
       <svg
         width="12"

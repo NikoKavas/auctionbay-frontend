@@ -1,0 +1,69 @@
+"filename", "language", "Properties", "JSON with Comments", "TypeScript", "TypeScript JSX", "JavaScript", "HTML", "PostCSS", "JSON", "Markdown", "XML", "comment", "blank", "total"
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\.env", "Properties", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\README.md", "Markdown", 0, 0, 0, 0, 0, 0, 0, 0, 45, 0, 0, 10, 55
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\eslint.config.js", "JavaScript", 0, 0, 0, 0, 27, 0, 0, 0, 0, 0, 0, 2, 29
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\index.html", "HTML", 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 1, 17
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\package-lock.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 7087, 0, 0, 0, 1, 7088
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\package.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 1, 41
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\public\vite.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\App.css", "PostCSS", 0, 0, 0, 0, 0, 0, 37, 0, 0, 0, 0, 6, 43
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\App.tsx", "TypeScript JSX", 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 2, 25
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\assets\home.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 4
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\assets\person.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 4
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\assets\react.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\AuctionCard.tsx", "TypeScript JSX", 0, 0, 0, 149, 0, 0, 0, 0, 0, 0, 1, 16, 166
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\AuctionDetail\AuctionDetailView.tsx", "TypeScript JSX", 0, 0, 0, 197, 0, 0, 0, 0, 0, 0, 1, 31, 229
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Auctions\Auctions.tsx", "TypeScript JSX", 0, 0, 0, 68, 0, 0, 0, 0, 0, 0, 0, 9, 77
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Button.tsx", "TypeScript JSX", 0, 0, 0, 85, 0, 0, 0, 0, 0, 0, 1, 8, 94
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Form\FormLayout.tsx", "TypeScript JSX", 0, 0, 0, 149, 0, 0, 0, 0, 0, 0, 0, 19, 168
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Form\InputField.styles.ts", "TypeScript", 0, 0, 72, 0, 0, 0, 0, 0, 0, 0, 0, 6, 78
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Form\InputField.tsx", "TypeScript JSX", 0, 0, 0, 44, 0, 0, 0, 0, 0, 0, 0, 5, 49
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\LandingPage\AuctionsPreview.tsx", "TypeScript JSX", 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 4, 24
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\LandingPage\Header.tsx", "TypeScript JSX", 0, 0, 0, 56, 0, 0, 0, 0, 0, 0, 0, 9, 65
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\LandingPage\Hero.tsx", "TypeScript JSX", 0, 0, 0, 36, 0, 0, 0, 0, 0, 0, 0, 5, 41
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\LandingPage\index.ts", "TypeScript", 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Navbar\Navbar.styles.ts", "TypeScript", 0, 0, 123, 0, 0, 0, 0, 0, 0, 0, 0, 10, 133
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Navbar\Navbar.tsx", "TypeScript JSX", 0, 0, 0, 66, 0, 0, 0, 0, 0, 0, 0, 5, 71
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Profile\MyAuctions.tsx", "TypeScript JSX", 0, 0, 0, 80, 0, 0, 0, 0, 0, 0, 1, 13, 94
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Profile\ProfileLayout.tsx", "TypeScript JSX", 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 3, 18
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Profile\ProfileTabs.styles.ts", "TypeScript", 0, 0, 44, 0, 0, 0, 0, 0, 0, 0, 0, 3, 47
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Profile\ProfileTabs.tsx", "TypeScript JSX", 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 4, 27
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Tags\Tag.tsx", "TypeScript JSX", 0, 0, 0, 36, 0, 0, 0, 0, 0, 0, 1, 6, 43
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\Tags\TimeTag.tsx", "TypeScript JSX", 0, 0, 0, 38, 0, 0, 0, 0, 0, 0, 1, 4, 43
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\User\ForgotPasswordForm.tsx", "TypeScript JSX", 0, 0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 10, 60
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\User\LoginForm.tsx", "TypeScript JSX", 0, 0, 0, 71, 0, 0, 0, 0, 0, 0, 0, 14, 85
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\components\User\RegisterForm.tsx", "TypeScript JSX", 0, 0, 0, 109, 0, 0, 0, 0, 0, 0, 1, 16, 126
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\constants\apiConstants.ts", "TypeScript", 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 1, 14
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\hooks\useAuction.ts", "TypeScript", 0, 0, 27, 0, 0, 0, 0, 0, 0, 0, 1, 7, 35
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\hooks\useAuctions.ts", "TypeScript", 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 4, 20
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\hooks\useLogin.ts", "TypeScript", 0, 0, 49, 0, 0, 0, 0, 0, 0, 0, 6, 12, 67
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\hooks\useMyAuctions.ts", "TypeScript", 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 4, 20
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\hooks\useRegister.ts", "TypeScript", 0, 0, 68, 0, 0, 0, 0, 0, 0, 0, 2, 6, 76
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\index.css", "PostCSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\main.tsx", "TypeScript JSX", 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 2, 11
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\pages\AuctionDetail.tsx", "TypeScript JSX", 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 1, 10, 58
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\pages\Auctions.tsx", "TypeScript JSX", 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 2, 5, 27
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\pages\LandingPage.tsx", "TypeScript JSX", 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\pages\Profile.tsx", "TypeScript JSX", 0, 0, 0, 33, 0, 0, 0, 0, 0, 0, 2, 9, 44
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\pages\auth\ForgotPassword.tsx", "TypeScript JSX", 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 2, 10
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\pages\auth\Login.tsx", "TypeScript JSX", 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 2, 10
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\pages\auth\Register.tsx", "TypeScript JSX", 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 2, 10
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\routes\PrivateRoute.tsx", "TypeScript JSX", 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 2, 3, 17
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\routes\RestrictedRoute.tsx", "TypeScript JSX", 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 1, 3, 15
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\routes\Routes.tsx", "TypeScript JSX", 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 3, 6, 56
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\services\api.ts", "TypeScript", 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 2, 3, 14
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\services\auction.ts", "TypeScript", 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 3, 17
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\services\user.ts", "TypeScript", 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 1, 5, 26
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\stores\auth.store.ts", "TypeScript", 0, 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 7, 31
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\styles\GlobalStyles.ts", "TypeScript", 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 3, 16
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\styles\theme.ts", "TypeScript", 0, 0, 41, 0, 0, 0, 0, 0, 0, 0, 0, 3, 44
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\types\auction.ts", "TypeScript", 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 2, 16
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\types\bid.ts", "TypeScript", 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 1, 16
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\types\role.ts", "TypeScript", 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 2, 11
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\types\user.ts", "TypeScript", 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\utils\localStorage.ts", "TypeScript", 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 4, 21
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\utils\time.ts", "TypeScript", 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\src\vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\tsconfig.json", "JSON with Comments", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"c:\Users\niko.kavas\Documents\Skillup\AUCTIONBAY\auctionbay-frontend\vite.config.ts", "TypeScript", 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 1, 2, 8
+"Total", "-", 1, 22, 633, 1529, 27, 16, 37, 7127, 45, 8, 32, 344, 9821

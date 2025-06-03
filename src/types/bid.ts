@@ -4,6 +4,13 @@ export interface BidType {
   maxAmount: number | null;
   userId: string;
   auctionId: string;
-  createdAt: string; // ISO timestamp
-  updatedAt: string; // ISO timestamp
+  createdAt: string; 
+  updatedAt: string; 
+
+  user: {
+    id: string
+    first_name: string
+    last_name: string
+    avatarUrl?: string
+  }
 }

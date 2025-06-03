@@ -12,8 +12,6 @@ export const FieldWrapper = styled.div<WrapperProps>`
   align-items: flex-start;
   gap: 8px;
   width: 100%;
-
-  
 `
 
 export const StyledLabel = styled.label`

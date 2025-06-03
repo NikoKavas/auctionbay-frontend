@@ -10,3 +10,12 @@ export async function fetchAllAuctions(): Promise<AuctionType[]> {
   const resp = await api.get<AuctionType[]>('/auctions');
   return resp.data;
 }
+
+export async function fetchOneAuction(id: string): Promise<AuctionType> {
+  const resp = await api.get<AuctionType>(`/auctions/${id}`)
+  return resp.data
+}
+
+export async function placeBid( auctionId: string, amount: number): Promise<void> {
+  await api.post(`/auctions/${auctionId}/bid`, { amount });
+}

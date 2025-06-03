@@ -6,9 +6,11 @@ export interface AuctionType {
   description: string;
   image: string;
   startingBid: number;
-  endTime: string;       // ISO timestamp
+  endTime: string;       
   userId: string;
-  createdAt: string;     // ISO timestamp
-  updatedAt: string;     // ISO timestamp
-  bids: BidType[];       // vgnezdeni “bids”
+  createdAt: string;     
+  updatedAt: string;     
+  bids: BidType[];       
 }
+
+export type {BidType}

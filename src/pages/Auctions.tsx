@@ -8,7 +8,7 @@ import { Auctions }                      from '../components/Auctions/Auctions'
 // kasneje: import Bidding from '../components/Profile/Bidding'
 // kasneje: import Won     from '../components/Profile/Won'
 
-const Profile: React.FC = () => {
+const AuctionsPage: React.FC = () => {
 
   return (
     <>
@@ -23,4 +23,4 @@ const Profile: React.FC = () => {
   )
 }
 
-export default observer(Profile)
+export default observer(AuctionsPage)
