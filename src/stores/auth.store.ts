@@ -20,7 +20,7 @@ class AuthStore {
     this.user = user
   }
 
-  signout() {
+  logout() {
     this.user = null;
     userStorage.clearUser();
   }

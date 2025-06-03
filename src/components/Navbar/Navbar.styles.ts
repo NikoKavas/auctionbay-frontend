@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { Button } from '../../components/Button'
 
 export const Nav = styled.nav`
   display: flex;
@@ -130,3 +131,45 @@ export const AvatarButton = styled.button`
     object-fit: cover;
   }
 `
+
+export const AvatarWrapper = styled.div`
+  position: relative;
+  display: flex;
+`;
+
+export const Menu = styled.div`
+  position: absolute;
+  top: calc(100% + 8px);
+  min-width: 204px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  z-index: 1000;
+`
+
+export const MenuItem = styled(Button).attrs({
+  variant: 'tertiary',
+})`
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;   
+  }
+`;
+
+export const LogoutBtn = styled(Button).attrs({
+  variant: 'tertiary',
+})`
+  width: 100%;
+`;
