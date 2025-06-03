@@ -4,10 +4,10 @@ import authStore from '../stores/auth.store'
 
 import Navbar from '../components/Navbar/Navbar'                
 import { ProfileWrapper, ProfileContent } from '../components/Profile/ProfileLayout'
-import { ProfileTabs }                     from '../components/Profile/ProfileTabs'
-import { MyAuctions }                      from '../components/Profile/MyAuctions'
-// kasneje: import Bidding from '../components/Profile/Bidding'
-// kasneje: import Won     from '../components/Profile/Won'
+import { ProfileTabs } from '../components/Profile/ProfileTabs'
+import { MyAuctions } from '../components/Profile/MyAuctions'
+import { Bidding } from '../components/Profile/Bidding'
+import { Won } from '../components/Profile/Won'
 
 const Profile: React.FC = () => {
   const [tab, setTab] = useState<'my' | 'bidding' | 'won'>('my')
@@ -23,17 +23,9 @@ const Profile: React.FC = () => {
         <ProfileContent>
           {tab === 'my' && <MyAuctions />}
 
-          {tab === 'bidding' && (
-            <p style={{ gridColumn: '1 / -1', textAlign: 'center' }}>
-              Bidding vsebina zaenkrat še ni narejena.
-            </p>
-          )}
+          {tab === 'bidding' && <Bidding />}
 
-          {tab === 'won' && (
-            <p style={{ gridColumn: '1 / -1', textAlign: 'center' }}>
-              Won vsebina zaenkrat še ni narejena.
-            </p>
-          )}
+          {tab === 'won' && <Won />}
         </ProfileContent>
       </ProfileWrapper>
     </>

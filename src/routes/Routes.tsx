@@ -16,7 +16,6 @@ type AppRoute = {
   element: React.ReactNode
 }
 
-// lazy-naloži stran
 const LandingPage = lazy(() => import('../pages/LandingPage'))
 const Register = lazy(() => import('../pages/auth/Register'))
 const Login = lazy(() => import('../pages/auth/Login'))

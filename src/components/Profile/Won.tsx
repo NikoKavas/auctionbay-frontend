@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useMyAuctions } from '../../hooks/useMyAuctions'
 import { AuctionCard } from '../AuctionCard'
 import { getRemainingHours } from '../../utils/time'
+import { useBiddingAuctions } from '../../hooks/useBiddingAuctions'
 
-// Grid že določen v ProfileContent, tukaj pa tvorimo wrapper
 const AuctionsGrid = styled.div`
   grid-column: 1 / -1;
   display: grid;
@@ -46,33 +45,24 @@ const EmptyState = styled.div`
     text-align: center;
 `
 
-export const MyAuctions: React.FC = () => {
-  const { data, loading, error } = useMyAuctions()
+export const Won: React.FC = () => {
+  const { data, loading, error } = useBiddingAuctions()
 
   if (loading) return <p>Loading…</p>
   if (error)   return <p style={{ color: 'red' }}>{error}</p>
 
 
-  const inProgress = data
-    .filter(a => getRemainingHours(a.endTime) > 0)
-    .sort((a, b) => 
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    )
+  const finished = data
+    .filter(a => getRemainingHours(a.endTime) <= 0)
+    .sort((a, b) => new Date(b.endTime).getTime() - new Date(a.endTime).getTime())
 
-  const done = data
-    .filter(a => getRemainingHours(a.endTime) === 0)
-    .sort((a, b) =>
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    )
-
-  const ordered = [...inProgress, ...done]
-
+  
 
   return (
     <AuctionsGrid>
-      {ordered.map((auc) => (
+      {finished.map((auc) => (
         <CardWrapper key={auc.id}>
-          <AuctionCard auction={auc} context='default' />
+          <AuctionCard auction={auc} context='won'hideActions />
         </CardWrapper>
       ))}
     </AuctionsGrid>

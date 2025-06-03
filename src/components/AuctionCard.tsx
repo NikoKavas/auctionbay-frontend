@@ -6,10 +6,13 @@ import { TimeTag } from './Tags/TimeTag'
 import { getRemainingHours } from '../utils/time'
 import { Tag, TagVariant } from './Tags/Tag'
 import { Link } from 'react-router-dom'
+import authStore from '../stores/auth.store'
+import { observer } from 'mobx-react-lite'
 
 interface Props {
   auction: AuctionType
   hideActions?: boolean
+  context?: 'default' | 'bidding' | 'won'
 }
 
 const Card = styled.div`
@@ -125,31 +128,57 @@ const PencilIcon = () => (
   </svg>
 )
 
-export const AuctionCard: React.FC<Props> = ({ auction, hideActions }) => {
+export const AuctionCard: React.FC<Props> = observer(
+  ({ auction, hideActions, context = 'default' }) => {
   const hours = getRemainingHours(auction.endTime)
-  const statusVariant: TagVariant = hours > 0 ? 'inprogress' : 'done'
+
+  const highestAmount  = auction.bids?.length
+    ? Math.max(...auction.bids.map(b => b.amount))
+    : auction.startingBid
+
+  const nextBid = highestAmount  + 1
+  
+  const highestBid = auction.bids?.find(b => b.amount === highestAmount)
+  const amWinning  = highestBid?.userId === authStore.user?.id
+
+  if (context === 'bidding' && hours <= 0) return null
+  
+  if (context === 'won') {
+     if (hours > 0)      return null          
+     if (!amWinning)     return null          
+   }
+
+    let tag: TagVariant
+    if (context === 'bidding') {
+      tag = amWinning ? 'winning' : 'outbid'
+    } else {
+      tag = hours > 0 ? 'inprogress' : 'done'
+    }
+
 
   return (
     <Link to={`/auctions/${auction.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
     <Card>
       <Header>
-        <Tag variant={statusVariant}>
-          {statusVariant === 'inprogress' ? 'In progress' : 'Done'}
-        </Tag>
-       
-        {statusVariant === 'inprogress' && (
-          <TimeTag endTime={auction.endTime} />
-        )}
+        <Tag variant={tag}>
+              {tag === 'inprogress' ? 'In progress'
+               : tag === 'done'       ? 'Done'
+               : tag === 'winning'    ? 'Winning'
+               :                        'Outbid'}
+            </Tag>
+
+            {/* Čas prikazujemo v obeh kontekstih, dokler dražba teče */}
+            {hours > 0 && <TimeTag endTime={auction.endTime} />}
         
       </Header>
       <Title>{auction.title}</Title>
-      <Price>{auction.startingBid.toFixed(0)} €</Price>
+      <Price>{nextBid.toFixed(0)} €</Price>
 
       <ImageWrapper>
         <Img src={`${import.meta.env.VITE_API_URL || ''}/files/${auction.image}`} />
       </ImageWrapper>
       
-       {!hideActions && statusVariant === 'inprogress' && (
+       {!hideActions && context !== 'bidding' && hours > 0 &&  (
       <Actions>
         <DeleteButton>
             <TrashIcon />
@@ -164,3 +193,4 @@ export const AuctionCard: React.FC<Props> = ({ auction, hideActions }) => {
     </Link>
   )
 }
+)

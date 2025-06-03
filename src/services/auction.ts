@@ -19,3 +19,8 @@ export async function fetchOneAuction(id: string): Promise<AuctionType> {
 export async function placeBid( auctionId: string, amount: number): Promise<void> {
   await api.post(`/auctions/${auctionId}/bid`, { amount });
 }
+
+export async function fetchBiddingAuctions(): Promise<AuctionType[]> {
+  const resp = await api.get<AuctionType[]>('/me/bidding')
+  return resp.data
+}
