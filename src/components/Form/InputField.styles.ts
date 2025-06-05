@@ -28,6 +28,7 @@ export const StyledLabel = styled.label`
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string
+  hasIcon?: boolean
 }
 
 export const StyledInput = styled.input.attrs({})<InputProps>`
@@ -59,7 +60,15 @@ export const StyledInput = styled.input.attrs({})<InputProps>`
   &.filled {
     font-weight: 500;
   }
+
+
+  ${({ hasIcon }) =>
+    hasIcon &&
+    css`
+      padding-right: 40px;
+    `}
 `
+
 export const TogglePasswordIcon = styled.img`
   position: absolute;
   right: 12px;
@@ -73,4 +82,15 @@ export const TogglePasswordIcon = styled.img`
   &:hover {
     opacity: 0.8;
   }
+`
+
+export const InputIcon = styled.img`
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;      /* prilagodi velikost glede na SVG */
+  height: 20px;
+  pointer-events: none;
+  opacity: 0.5;
 `

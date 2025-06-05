@@ -24,3 +24,16 @@ export async function fetchBiddingAuctions(): Promise<AuctionType[]> {
   const resp = await api.get<AuctionType[]>('/me/bidding')
   return resp.data
 }
+
+export async function addAuction(formData: FormData): Promise<AuctionType> {
+  const resp = await api.post<AuctionType>(
+    '/me/auction',
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+  )
+  return resp.data
+}

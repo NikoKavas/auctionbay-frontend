@@ -6,7 +6,6 @@ import * as Yup from 'yup'
 import { register as registerApi } from '../services/user'
 import type { UserType } from '../types/user'
 
-/** Polja obrazca – zdaj **vsa** obvezna, da se ujamejo z defaultValues */
 export interface RegisterFormValues {
   first_name: string
   last_name: string

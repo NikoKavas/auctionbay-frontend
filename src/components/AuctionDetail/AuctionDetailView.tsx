@@ -113,6 +113,7 @@ const HistoryContainer = styled.div`
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   height: 100%;
+  overflow-y: auto; 
 `
 
 const HistoryTitle = styled.h2`
