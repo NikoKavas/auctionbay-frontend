@@ -5,7 +5,6 @@ export interface ButtonProps {
   variant?: ButtonVariant
 }
 
-// skupne nastavitve za vse variante in stanja
 const base = css`
   display: inline-flex;
   align-items: center;

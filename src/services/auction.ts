@@ -37,3 +37,19 @@ export async function addAuction(formData: FormData): Promise<AuctionType> {
   )
   return resp.data
 }
+
+export async function updateAuction(
+  auctionId: string,
+  formData: FormData
+): Promise<AuctionType> {
+  const resp = await api.patch<AuctionType>(
+    `/me/auction/${auctionId}`,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+  );
+  return resp.data;
+}

@@ -1,13 +1,15 @@
 // src/components/AuctionCard.tsx
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import type { AuctionType } from '../types/auction'
 import { TimeTag } from './Tags/TimeTag'
 import { getRemainingHours } from '../utils/time'
 import { Tag, TagVariant } from './Tags/Tag'
+import { Button } from './Button'
 import { Link } from 'react-router-dom'
 import authStore from '../stores/auth.store'
 import { observer } from 'mobx-react-lite'
+import EditAuctionModal from './EditAuctionModal'
 
 interface Props {
   auction: AuctionType
@@ -73,7 +75,7 @@ const Actions = styled.div`
   margin: 8px -12px 0;
 `
 
-const DeleteButton = styled.button`
+const DeleteButton = styled(Button).attrs({ variant: 'tertiary' })`
   box-sizing: border-box;
   flex: 0 0 calc((48 / 208) * 100%);
   display: flex;
@@ -83,15 +85,10 @@ const DeleteButton = styled.button`
   padding: 8px 16px;
   gap: 8px;
 
-  border: 1px solid #272D2D;
-  border-radius: 16px;
-  background: transparent;
-  cursor: pointer;
-
   svg { width: 16px; height: 16px; }
 `
 
-const EditButton = styled.button`
+const EditButton = styled(Button).attrs({ variant: 'secondary' })`
   box-sizing: border-box;
   flex: 0 0 calc((156 / 208) * 100%);
   display: flex;
@@ -100,23 +97,13 @@ const EditButton = styled.button`
   padding: 8px 16px;
   gap: 8px;
 
-  background: #272D2D;
-  border: none;
-  border-radius: 16px;
-  color: white;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  cursor: pointer;
-
   svg { width: 16px; height: 16px; fill: white; }
 `
 const TrashIcon = () => (
   <svg viewBox="0 0 16 16" fill="none">
     <path
       d="M3.99992 12.6667C3.99992 13.4 4.59992 14 5.33325 14H10.6666C11.3999 14 11.9999 13.4 11.9999 12.6667V4.66667H3.99992V12.6667ZM5.33325 6H10.6666V12.6667H5.33325V6ZM10.3333 2.66667L9.66658 2H6.33325L5.66659 2.66667H3.33325V4H12.6666V2.66667H10.3333Z"
-      fill="#071015"
+      fill="currentColor"
     />
   </svg>
 )
@@ -130,15 +117,17 @@ const PencilIcon = () => (
 
 export const AuctionCard: React.FC<Props> = observer(
   ({ auction, hideActions, context = 'default' }) => {
-  const hours = getRemainingHours(auction.endTime)
+    
+  const [current, setCurrent] = useState<AuctionType>(auction)
+  const hours = getRemainingHours(current.endTime)
 
-  const highestAmount  = auction.bids?.length
-    ? Math.max(...auction.bids.map(b => b.amount))
-    : auction.startingBid
+  const highestAmount  = current.bids?.length
+    ? Math.max(...current.bids.map(b => b.amount))
+    : current.startingBid
 
   const nextBid = highestAmount  + 1
   
-  const highestBid = auction.bids?.find(b => b.amount === highestAmount)
+  const highestBid = current.bids?.find(b => b.amount === highestAmount)
   const amWinning  = highestBid?.userId === authStore.user?.id
 
   if (context === 'bidding' && hours <= 0) return null
@@ -155,9 +144,11 @@ export const AuctionCard: React.FC<Props> = observer(
       tag = hours > 0 ? 'inprogress' : 'done'
     }
 
+    const [isEditing, setIsEditing] = useState(false)
 
   return (
-    <Link to={`/auctions/${auction.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <>
+    <Link to={`/auctions/${current.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
     <Card>
       <Header>
         <Tag variant={tag}>
@@ -167,15 +158,14 @@ export const AuctionCard: React.FC<Props> = observer(
                :                        'Outbid'}
             </Tag>
 
-            {/* Čas prikazujemo v obeh kontekstih, dokler dražba teče */}
-            {hours > 0 && <TimeTag endTime={auction.endTime} />}
+            {hours > 0 && <TimeTag endTime={current.endTime} />}
         
       </Header>
-      <Title>{auction.title}</Title>
+      <Title>{current.title}</Title>
       <Price>{nextBid.toFixed(0)} €</Price>
 
       <ImageWrapper>
-        <Img src={`${import.meta.env.VITE_API_URL || ''}/files/${auction.image}`} />
+        <Img src={`${import.meta.env.VITE_API_URL || ''}/files/${current.image}`} />
       </ImageWrapper>
       
        {!hideActions && context !== 'bidding' && hours > 0 &&  (
@@ -183,14 +173,31 @@ export const AuctionCard: React.FC<Props> = observer(
         <DeleteButton>
             <TrashIcon />
           </DeleteButton>
-          <EditButton>
-            <PencilIcon />
-            Edit
-          </EditButton>
+            <EditButton onClick={e => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsEditing(true);
+              console.log('EDIT CLICKED!')
+            }}>
+              <PencilIcon /> Edit
+            </EditButton>
       </Actions>
       )}
     </Card>
     </Link>
+    {isEditing && (
+        <EditAuctionModal
+          auction={current}
+          onClose={() => {
+            console.log('CLOSING MODAL')
+            setIsEditing(false)
+          }}
+          onSaved={(updated) => {
+            setCurrent(updated)
+            setIsEditing(false)
+          }}
+        />
+      )}
+    </>
   )
-}
-)
+})
