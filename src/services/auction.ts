@@ -25,6 +25,11 @@ export async function fetchBiddingAuctions(): Promise<AuctionType[]> {
   return resp.data
 }
 
+export async function fetchWonAuctions(): Promise<AuctionType[]> {
+  const resp = await api.get<AuctionType[]>('/me/won')
+  return resp.data
+}
+
 export async function addAuction(formData: FormData): Promise<AuctionType> {
   const resp = await api.post<AuctionType>(
     '/me/auction',

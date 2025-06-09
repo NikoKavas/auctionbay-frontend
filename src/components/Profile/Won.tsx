@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { AuctionCard } from '../AuctionCard'
 import { getRemainingHours } from '../../utils/time'
-import { useBiddingAuctions } from '../../hooks/useBiddingAuctions'
+import { useWonAuctions } from '../../hooks/useWonAuctions'
 
 const AuctionsGrid = styled.div`
   grid-column: 1 / -1;
@@ -46,7 +46,7 @@ const EmptyState = styled.div`
 `
 
 export const Won: React.FC = () => {
-  const { data, loading, error } = useBiddingAuctions()
+  const { data, loading, error } = useWonAuctions()
 
   if (loading) return <p>Loading…</p>
   if (error)   return <p style={{ color: 'red' }}>{error}</p>
