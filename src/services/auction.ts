@@ -53,3 +53,8 @@ export async function updateAuction(
   );
   return resp.data;
 }
+
+
+export async function deleteAuction(auctionId: string): Promise<void> {
+  await api.delete(`/auctions/${auctionId}`);
+}

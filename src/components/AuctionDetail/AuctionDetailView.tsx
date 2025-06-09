@@ -7,6 +7,7 @@ import { FullWidthButton } from '../Form/FormLayout'
 import { InputField } from '../Form/InputField'
 import { fetchOneAuction, placeBid } from '../../services/auction'
 import authStore from '../../stores/auth.store'
+import toast from 'react-hot-toast'
 
 const Container = styled.div`
   display: flex;
@@ -220,7 +221,7 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
     e.preventDefault();
 
     if (bidValue < minAllowedBid) {
-      setErrorMsg(`Minimal Bid: ${minAllowedBid} €`);
+      toast.error(`Minimal Bid: ${minAllowedBid} €`);
       return;
     }
 
@@ -234,7 +235,7 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
       setBidValue(freshHighest + 1)
       setErrorMsg(undefined);
     } catch (err: any) {
-      setErrorMsg(err?.response?.data?.message || 'Bid failed');
+      toast.error(err?.response?.data?.message || 'Bid failed');
     }
   };
 

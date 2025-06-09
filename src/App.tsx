@@ -6,16 +6,18 @@ import { BrowserRouter } from 'react-router-dom'
 import { AppRoutes as Routes } from './routes/Routes'
 import { fetchUser } from './services/user'
 import authStore from './stores/auth.store'
+import { Toaster } from 'react-hot-toast'
 
 export default function App() {
   useEffect(() => {
     fetchUser()
       .then((me) => authStore.login(me))
-      .catch(() => authStore.signout())
+      .catch(() => authStore.logout())
   }, [])
 
   return (
     <ThemeProvider theme={theme}>
+      <div>< Toaster/></div>
       <GlobalStyles />
       <BrowserRouter>
         <Routes />

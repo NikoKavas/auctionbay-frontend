@@ -10,11 +10,13 @@ import { Link } from 'react-router-dom'
 import authStore from '../stores/auth.store'
 import { observer } from 'mobx-react-lite'
 import EditAuctionModal from './EditAuctionModal'
+import { deleteAuction } from '../services/auction'
 
 interface Props {
   auction: AuctionType
   hideActions?: boolean
   context?: 'default' | 'bidding' | 'won'
+  onDelete?: (id: string) => void
 }
 
 const Card = styled.div`
@@ -116,9 +118,14 @@ const PencilIcon = () => (
 )
 
 export const AuctionCard: React.FC<Props> = observer(
-  ({ auction, hideActions, context = 'default' }) => {
+  ({ auction, hideActions, context = 'default', onDelete }) => {
     
   const [current, setCurrent] = useState<AuctionType>(auction)
+  const [deleted, setDeleted] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+
+  if (deleted) return null
+
   const hours = getRemainingHours(current.endTime)
 
   const highestAmount  = current.bids?.length
@@ -144,7 +151,7 @@ export const AuctionCard: React.FC<Props> = observer(
       tag = hours > 0 ? 'inprogress' : 'done'
     }
 
-    const [isEditing, setIsEditing] = useState(false)
+    
 
   return (
     <>
@@ -170,7 +177,17 @@ export const AuctionCard: React.FC<Props> = observer(
       
        {!hideActions && context !== 'bidding' && hours > 0 &&  (
       <Actions>
-        <DeleteButton>
+        <DeleteButton onClick={async (e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    try {
+                      await deleteAuction(current.id)
+                      onDelete?.(current.id)
+                    } catch (err) {
+                      console.error('Delete failed', err)
+                    }
+                  }}
+                >
             <TrashIcon />
           </DeleteButton>
             <EditButton onClick={e => {
