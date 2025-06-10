@@ -128,13 +128,11 @@ export const AuctionCard: React.FC<Props> = observer(
 
   const hours = getRemainingHours(current.endTime)
 
-  const highestAmount  = current.bids?.length
-    ? Math.max(...current.bids.map(b => b.amount))
-    : current.startingBid
-
-  const nextBid = highestAmount  + 1
+  const hasBids     = current.bids?.length > 0
+  const highest     = hasBids ? Math.max(...current.bids.map(b => b.amount)) : current.startingBid
+  const priceToShow = hasBids ? highest + 1 : current.startingBid
   
-  const highestBid = current.bids?.find(b => b.amount === highestAmount)
+  const highestBid = current.bids?.find(b => b.amount === highest)
   const amWinning  = highestBid?.userId === authStore.user?.id
 
   if (context === 'bidding' && hours <= 0) return null
@@ -169,7 +167,7 @@ export const AuctionCard: React.FC<Props> = observer(
         
       </Header>
       <Title>{current.title}</Title>
-      <Price>{nextBid.toFixed(0)} €</Price>
+      <Price>{priceToShow.toFixed(0)} €</Price>
 
       <ImageWrapper>
         <Img src={`${import.meta.env.VITE_API_URL || ''}/files/${current.image}`} />
