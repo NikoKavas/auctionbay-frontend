@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import type { AuctionType, BidType } from '../../types/auction'
 import { Tag } from '../Tags/Tag'
 import { TimeTag } from '../Tags/TimeTag'
 import { FullWidthButton } from '../Form/FormLayout'
 import { InputField } from '../Form/InputField'
+import defaultAvatar from '../../assets/a.png'
 import { fetchOneAuction, placeBid } from '../../services/auction'
 import authStore from '../../stores/auth.store'
 import toast from 'react-hot-toast'
+import { observer } from 'mobx-react-lite'
 
 const Container = styled.div`
   display: flex;
@@ -217,6 +219,31 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
   const [bidValue, setBidValue] = useState<number>(minAllowedBid)
   const [errorMsg, setErrorMsg] = useState<string | undefined>(undefined)
 
+  useEffect(() => {
+  const u = authStore.user
+  if (!u) return
+
+  setBids(prev =>
+    prev.map(b =>
+      b.userId === u.id
+        ? {
+            ...b,
+            user: {
+              ...b.user,
+              avatar:      u.avatar,          // nova slika
+              first_name:  u.first_name,      // novo ime
+              last_name:   u.last_name        // nov priimek
+            },
+          }
+        : b
+    )
+  )
+}, [
+  authStore.user?.avatar,
+  authStore.user?.first_name,
+  authStore.user?.last_name,
+])
+
   const handleBidSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -302,14 +329,18 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
 
         <HistoryContainer>
           <HistoryTitle>
-            Bidding history ({auction.bids.length})
+            Bidding history ({bids.length})
           </HistoryTitle>
           <HistoryList>
             {bids.map((bid) => (
               <HistoryItem key={bid.id}>
                 <HistoryUser>
                   <AvatarImg
-                    src={bid.user.avatarUrl || '/default-avatar.png'}
+                    src={
+                      bid.user.avatar
+                        ? `${import.meta.env.VITE_API_URL || ''}/files/${bid.user.avatar}`
+                        : defaultAvatar
+                    }
                     alt={`${bid.user.first_name} ${bid.user.last_name}`}
                   />
                   <HistoryName>
@@ -336,4 +367,4 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
   )
 }
 
-export default React.memo(AuctionDetailView)
+export default observer(AuctionDetailView)

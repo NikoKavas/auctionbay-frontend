@@ -14,11 +14,12 @@ import {
   Menu, MenuItem, LogoutBtn
 } from './Navbar.styles'
 import logoSrc from '../../assets/logo.png'
-import avatarSrc from '../../assets/a.png'
+import defaultAvatar from '../../assets/a.png'
 import authStore from '../../stores/auth.store'
 import AddAuctionModal from '../AddAuctionModal' 
 import ProfileSettingsModal from '../ProfileSettingsModal'
 import ChangePasswordModal from '../ChangePasswordModal'
+import ChangeAvatarModal from '../ChangeAvatarModal'
 
 const Navbar: React.FC = () => {
   const current = window.location.pathname
@@ -98,7 +99,12 @@ const Navbar: React.FC = () => {
             aria-label="User menu"
             onClick={() => setOpen((v) => !v)}
           >
-            <img src={avatarSrc} alt="User avatar" />
+            <img src={
+              authStore.user?.avatar
+                ? `${import.meta.env.VITE_API_URL || ''}/files/${authStore.user.avatar}`
+                : defaultAvatar
+            }
+            alt="User avatar" />
           </AvatarButton>
 
           {open && (
@@ -142,10 +148,9 @@ const Navbar: React.FC = () => {
         <ChangePasswordModal onClose={() => setShowPassword(false)} />
       )}
 
-      {/* če/ko boš imel modal za avatar
       {showAvatar && (
         <ChangeAvatarModal onClose={() => setShowAvatar(false)} />
-      )} */}
+      )}
     </>
   )
   

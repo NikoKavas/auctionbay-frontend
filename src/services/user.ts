@@ -40,3 +40,12 @@ export async function updatePassword(payload: {
 }): Promise<void> {
   await api.patch('/auth/me/update-password', payload);
 }
+
+export async function uploadAvatar(userId: string, file: File): Promise<UserType> {
+  const fd = new FormData();
+  fd.append('avatar', file);
+  const res = await api.post<UserType>(`/users/upload/${userId}`, fd, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return res.data;
+}
