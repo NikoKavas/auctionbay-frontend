@@ -18,6 +18,7 @@ import avatarSrc from '../../assets/a.png'
 import authStore from '../../stores/auth.store'
 import AddAuctionModal from '../AddAuctionModal' 
 import ProfileSettingsModal from '../ProfileSettingsModal'
+import ChangePasswordModal from '../ChangePasswordModal'
 
 const Navbar: React.FC = () => {
   const current = window.location.pathname
@@ -29,6 +30,8 @@ const Navbar: React.FC = () => {
 
   const [showModal, setShowModal] = useState(false)
   const [showProfileSettings, setShowProfileSettings] = useState(false)
+  const [showPassword, setShowPassword]   = useState(false);
+  const [showAvatar,   setShowAvatar]     = useState(false);
 
   useEffect(() => {
     function handle(e: MouseEvent) {
@@ -45,8 +48,6 @@ const Navbar: React.FC = () => {
     setOpen(false)
     navigate('/login')
   }
-
-  
 
   return (
     <>
@@ -127,8 +128,24 @@ const Navbar: React.FC = () => {
     {showProfileSettings && (
     <ProfileSettingsModal
       onClose={() => setShowProfileSettings(false)}
+      onChangePassword={() => {
+            setShowProfileSettings(false)
+            setShowPassword(true)
+          }}
+          onChangeAvatar={() => {
+            setShowProfileSettings(false)
+            setShowAvatar(true)
+          }}
       />
     )}
+    {showPassword && (
+        <ChangePasswordModal onClose={() => setShowPassword(false)} />
+      )}
+
+      {/* če/ko boš imel modal za avatar
+      {showAvatar && (
+        <ChangeAvatarModal onClose={() => setShowAvatar(false)} />
+      )} */}
     </>
   )
   

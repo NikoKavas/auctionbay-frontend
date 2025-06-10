@@ -6,6 +6,7 @@ import { InputField } from './Form/InputField'
 import authStore from '../stores/auth.store'
 import { updateProfile } from '../services/user'
 import toast from 'react-hot-toast'
+import ChangePasswordModal from './ChangePasswordModal'
 
 const Overlay = styled.div`
   position: fixed; inset: 0;
@@ -47,9 +48,11 @@ const Row = styled.div`
 
 interface Props {
   onClose: () => void
+  onChangePassword: () => void;
+  onChangeAvatar: () => void;
 }
 
-const ProfileSettingsModal: React.FC<Props> = ({ onClose }) => {
+const ProfileSettingsModal: React.FC<Props> = ({ onClose, onChangePassword, onChangeAvatar }) => {
   const fileRef = useRef<HTMLInputElement>(null)
 
   const user = authStore.user!
@@ -58,7 +61,6 @@ const ProfileSettingsModal: React.FC<Props> = ({ onClose }) => {
   const [email, setEmail]         = useState(user.email)
   const [err,  setErr]            = useState<string|null>(null)
   const [loading, setLoading]     = useState(false)
-
 
   const emailOk = (e: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)
@@ -110,10 +112,10 @@ const ProfileSettingsModal: React.FC<Props> = ({ onClose }) => {
           onChange={e => setEmail(e.target.value)}
         />
 
-        <LinkText onClick={() => {/* odpri change-password modal… */}}>
+        <LinkText onClick={onChangePassword}>
           Change password
         </LinkText>
-        <LinkText onClick={() => fileRef.current?.click()}>
+        <LinkText onClick={onChangeAvatar}>
           Change profile picture
         </LinkText>
         </Content>

@@ -32,3 +32,11 @@ export async function updateProfile(payload: {
   const res = await api.patch('/users/me/profile', payload);
   return res.data;
 }
+
+export async function updatePassword(payload: {
+  oldPassword:      string;
+  newPassword:      string;
+  confirmPassword:  string;
+}): Promise<void> {
+  await api.patch('/auth/me/update-password', payload);
+}
