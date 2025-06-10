@@ -71,8 +71,9 @@ const StyledTextarea = styled(StyledInput).attrs({ as: 'textarea', rows: 4 })`
 
 type DescProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label: string;
+  error?: string;
 };
-const DescriptionField: React.FC<DescProps> = ({ label, ...props }) => (
+const DescriptionField: React.FC<DescProps> = ({ label, error, ...props }) => (
   <FieldWrapper focused={false} filled={Boolean(props.value)}>
     <StyledLabel>{label}</StyledLabel>
     <StyledTextarea {...props} filled={Boolean(props.value)} />
@@ -175,6 +176,7 @@ const EditAuctionModal: React.FC<Props> = ({ auction, onClose, onSaved }) => {
                 {...field}
                 label="Description"
                 placeholder="Write description here…"
+                error={errors.description?.message}
               />
             )}
           />

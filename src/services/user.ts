@@ -23,3 +23,12 @@ export async function register(data: RegisterFormValues): Promise<UserType> {
 export async function signout(): Promise<void> {
   await api.post(apiRoutes.SIGNOUT)
 }
+
+export async function updateProfile(payload: {
+  first_name: string;
+  last_name:  string;
+  email:      string;
+}) {
+  const res = await api.patch('/users/me/profile', payload);
+  return res.data;
+}
