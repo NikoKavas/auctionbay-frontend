@@ -47,6 +47,7 @@ export const CardInner = styled.div`
   justify-content: space-between;
   padding: 64px 32px;
   height: 100%;
+  max-height: 100vh;
   width: 100%;
 `
 

@@ -10,6 +10,7 @@ import { fetchOneAuction, placeBid } from '../../services/auction'
 import authStore from '../../stores/auth.store'
 import toast from 'react-hot-toast'
 import { observer } from 'mobx-react-lite'
+import { EmptyState } from '../Profile/EmptyState'
 
 const Container = styled.div`
   display: flex;
@@ -230,9 +231,9 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
             ...b,
             user: {
               ...b.user,
-              avatar:      u.avatar,          // nova slika
-              first_name:  u.first_name,      // novo ime
-              last_name:   u.last_name        // nov priimek
+              avatar:      u.avatar,          
+              first_name:  u.first_name,      
+              last_name:   u.last_name        
             },
           }
         : b
@@ -332,7 +333,13 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
             Bidding history ({bids.length})
           </HistoryTitle>
           <HistoryList>
-            {bids.map((bid) => (
+            {bids.length === 0 ? (
+              <EmptyState
+                title="No bids yet!"
+                subtitle="Place your bid to have a chance to get this item."
+              />
+            ) : (
+            bids.map(bid => (
               <HistoryItem key={bid.id}>
                 <HistoryUser>
                   <AvatarImg
@@ -359,7 +366,8 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
                   <HistoryAmount>{bid.amount.toFixed(0)} €</HistoryAmount>
                 </div>
               </HistoryItem>
-            ))}
+            ))
+            )}
           </HistoryList>
         </HistoryContainer>
       </RightPanel>

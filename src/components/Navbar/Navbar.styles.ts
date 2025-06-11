@@ -173,3 +173,9 @@ export const LogoutBtn = styled(Button).attrs({
 })`
   width: 100%;
 `;
+
+export const DefaultIcon = styled.svg`
+  width: 32px;
+  height: 32px;
+  fill: #071015;
+`

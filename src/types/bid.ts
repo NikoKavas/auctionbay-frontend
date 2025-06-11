@@ -11,6 +11,6 @@ export interface BidType {
     id: string
     first_name: string
     last_name: string
-    avatarUrl?: string
+    avatar?: string
   }
 }

@@ -4,6 +4,7 @@ import { useMyAuctions } from '../../hooks/useMyAuctions'
 import { AuctionCard } from '../AuctionCard'
 import { getRemainingHours } from '../../utils/time'
 import { AuctionType } from 'types/auction'
+import { EmptyState } from './EmptyState'
 
 const AuctionsGrid = styled.div`
   grid-column: 1 / -1;
@@ -17,35 +18,6 @@ const CardWrapper = styled.div`
   grid-column: span 2;
 `
 
-const EmptyState = styled.div`
-  grid-column: 1 / -1;
-
-  /* Center vse skupaj */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
-  padding: 100px 0;
-  margin: 24px auto 0;
-
-  h2 {
-    margin: 0 0 8px;
-    font-size: ${({ theme }) => theme.font.sizes.h2};
-    color: ${({ theme }) => theme.colors.secondary};
-    /* noben wrap, da ostane v eni vrstici */
-    white-space: nowrap;
-  }
-
-  p {
-    margin: 0;
-    /* omeji največjo širino, da ne teče do samih robov */
-    max-width: 600px;
-    font-size: ${({ theme }) => theme.font.sizes.body};
-    color: ${({ theme }) => theme.colors.secondary};
-    opacity: 0.7;
-    text-align: center;
-`
 
 export const MyAuctions: React.FC = () => {
   const { data, loading, error } = useMyAuctions()
@@ -77,13 +49,20 @@ export const MyAuctions: React.FC = () => {
 
   return (
     <AuctionsGrid>
-      {ordered.map((auc) => (
+      {ordered.length === 0 ? (
+      <EmptyState
+        title="Oh no, no auctions added!"
+        subtitle="To add new auction click “+” button in navigation bar and new auctions wil be added here!"
+      />
+    ) : (
+      ordered.map(auc => (
         <CardWrapper key={auc.id}>
           <AuctionCard auction={auc} context='default'
           onDelete={handleDelete}
            />
         </CardWrapper>
-      ))}
+      ))
+    )}
     </AuctionsGrid>
   )
 }

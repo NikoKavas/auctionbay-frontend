@@ -11,15 +11,15 @@ import {
   AvatarButton,
   PlusButton,
   AvatarWrapper,
-  Menu, MenuItem, LogoutBtn
+  Menu, MenuItem, LogoutBtn, DefaultIcon
 } from './Navbar.styles'
 import logoSrc from '../../assets/logo.png'
-import defaultAvatar from '../../assets/a.png'
 import authStore from '../../stores/auth.store'
 import AddAuctionModal from '../AddAuctionModal' 
 import ProfileSettingsModal from '../ProfileSettingsModal'
 import ChangePasswordModal from '../ChangePasswordModal'
 import ChangeAvatarModal from '../ChangeAvatarModal'
+
 
 const Navbar: React.FC = () => {
   const current = window.location.pathname
@@ -99,12 +99,19 @@ const Navbar: React.FC = () => {
             aria-label="User menu"
             onClick={() => setOpen((v) => !v)}
           >
-            <img src={
-              authStore.user?.avatar
-                ? `${import.meta.env.VITE_API_URL || ''}/files/${authStore.user.avatar}`
-                : defaultAvatar
-            }
-            alt="User avatar" />
+            {authStore.user?.avatar ? (
+            <img
+              src={`${import.meta.env.VITE_API_URL || ''}/files/${authStore.user.avatar}`}
+              alt="User avatar"
+            />
+          ) : (
+            <DefaultIcon
+              viewBox="0 0 12 12"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M6.00002 2.00002C6.73335 2.00002 7.33335 2.60002 7.33335 3.33335C7.33335 4.06669 6.73335 4.66669 6.00002 4.66669C5.26669 4.66669 4.66669 4.06669 4.66669 3.33335C4.66669 2.60002 5.26669 2.00002 6.00002 2.00002ZM6.00002 8.66669C7.80002 8.66669 9.86669 9.52669 10 10H2.00002C2.15335 9.52002 4.20669 8.66669 6.00002 8.66669ZM6.00002 0.666687C4.52669 0.666687 3.33335 1.86002 3.33335 3.33335C3.33335 4.80669 4.52669 6.00002 6.00002 6.00002C7.47335 6.00002 8.66669 4.80669 8.66669 3.33335C8.66669 1.86002 7.47335 0.666687 6.00002 0.666687ZM6.00002 7.33335C4.22002 7.33335 0.666687 8.22669 0.666687 10V11.3334H11.3334V10C11.3334 8.22669 7.78002 7.33335 6.00002 7.33335Z"/>
+            </DefaultIcon>
+          )}
           </AvatarButton>
 
           {open && (

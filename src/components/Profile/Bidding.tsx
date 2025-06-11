@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { AuctionCard } from '../AuctionCard'
 import { getRemainingHours } from '../../utils/time'
 import { useBiddingAuctions } from '../../hooks/useBiddingAuctions'
+import { EmptyState } from './EmptyState'
 
 const AuctionsGrid = styled.div`
   grid-column: 1 / -1;
@@ -13,36 +14,6 @@ const AuctionsGrid = styled.div`
 `
 const CardWrapper = styled.div`
   grid-column: span 2;
-`
-
-const EmptyState = styled.div`
-  grid-column: 1 / -1;
-
-  /* Center vse skupaj */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
-  padding: 100px 0;
-  margin: 24px auto 0;
-
-  h2 {
-    margin: 0 0 8px;
-    font-size: ${({ theme }) => theme.font.sizes.h2};
-    color: ${({ theme }) => theme.colors.secondary};
-    /* noben wrap, da ostane v eni vrstici */
-    white-space: nowrap;
-  }
-
-  p {
-    margin: 0;
-    /* omeji največjo širino, da ne teče do samih robov */
-    max-width: 600px;
-    font-size: ${({ theme }) => theme.font.sizes.body};
-    color: ${({ theme }) => theme.colors.secondary};
-    opacity: 0.7;
-    text-align: center;
 `
 
 export const Bidding: React.FC = () => {
@@ -68,11 +39,18 @@ export const Bidding: React.FC = () => {
 
   return (
     <AuctionsGrid>
-      {ordered.map((auc) => (
+      {ordered.length === 0 ? (
+            <EmptyState
+              title="No bidding in progress!"
+              subtitle="Start bidding by finding new items you like on “Auction” page!"
+            />
+          ) : (
+      ordered.map(auc => (
         <CardWrapper key={auc.id}>
           <AuctionCard auction={auc} context='bidding'hideActions />
         </CardWrapper>
-      ))}
+      ))
+    )}
     </AuctionsGrid>
   )
 }
