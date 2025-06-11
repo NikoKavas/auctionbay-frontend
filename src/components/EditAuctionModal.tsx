@@ -92,6 +92,8 @@ const EditAuctionModal: React.FC<Props> = ({ auction, onClose, onSaved }) => {
     `${import.meta.env.VITE_API_URL || ''}/files/${auction.image}`
   );
 
+  const hasBids = auction.bids.length > 0
+
   const {
     control,
     errors,
@@ -193,6 +195,8 @@ const EditAuctionModal: React.FC<Props> = ({ auction, onClose, onSaved }) => {
                   placeholder="Price"
                   iconSrc={EuroIcon}
                   error={errors.startingBid?.message}
+                  disabled={hasBids}
+                  readOnly={hasBids}
                 />
               )}
             />

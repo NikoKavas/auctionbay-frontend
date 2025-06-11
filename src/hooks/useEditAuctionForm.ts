@@ -95,7 +95,7 @@ export function useEditAuctionForm(
       console.log('🛫 pošiljam patch…')
       const updated = await updateAuction(auction.id, formData);
       onSuccess(updated);
-      reset(data);  // keep it filled in case they want to tweak again
+      reset(data);  
     } catch (err: any) {
       console.error('❌ PATCH napaka:', err)
       setError(err.response?.data?.message || err.message);
