@@ -1,54 +1,157 @@
-# React + TypeScript + Vite
+# AuctionBay — Frontend (React + Vite + TypeScript)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Responsive full‑stack frontend for the AuctionBay application.  
+Implements authentication, profile management, auctions listing/detail, bidding flow, and profile tabs (My / Bidding / Won).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+- [Features](#features)
+- [Architecture & Tech](#architecture--tech)
+- [Prerequisites](#prerequisites)
+- [Environment](#environment)
+- [Install](#install)
+- [Run](#run)
+- [Build](#build)
+- [Project Structure](#project-structure)
+- [UI & Styling](#ui--styling)
+- [API Integration](#api-integration)
+- [Profile & Modals](#profile--modals)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Features
+
+- **Authentication**: register, login, forgot password, update password (JWT cookie-based).
+- **Profile management**: update name/surname/email, change password, upload/change avatar.
+- **Auctions**:
+  - Create/edit/delete auctions with images and end date.
+  - Auction detail view with bidding form & history.
+  - Tabs: “My auctions”, “Bidding”, “Won” with empty states.
+- **Bidding**: enforce minimal bid (≥ highest + 1), prevent bids after endTime, instant history updates.
+- **Responsive UI**: styled-components + Figma design fidelity.
+- **Notifications**: toast messages for errors/success.
+
+---
+
+## Architecture & Tech
+
+- **React 18**
+- **Vite** (dev/build tool)
+- **TypeScript**
+- **State**: MobX (auth store)
+- **Forms**: react-hook-form + yup validation
+- **Styling**: styled-components
+- **UI Components**: custom, + shadcn/ui inspired patterns
+- **Routing**: react-router-dom
+- **Charts/Icons**: lucide-react for icons, recharts where needed
+- **Build**: Vite optimized, supports `.env`
+
+---
+
+## Prerequisites
+
+- Node.js **18+**
+- npm **9+**
+
+---
+
+## Environment
+
+Create `.env` in repo root:
+
+```env
+VITE_API_URL=http://localhost:3000
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Where backend runs on port 3000.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## Install
+
+```bash
+npm install
 ```
+
+---
+
+## Run
+
+```bash
+# development
+npm run dev
+```
+
+Frontend dev server: **http://localhost:5173** (default Vite).
+
+---
+
+## Build
+
+```bash
+# production build
+npm run build
+
+# preview production build locally
+npm run preview
+```
+
+---
+
+## Project Structure
+
+```
+auctionbay-frontend/
+├─ public/                  # static assets
+├─ src/
+│  ├─ assets/               # images/icons
+│  ├─ components/
+│  │  ├─ AuctionCard.tsx
+│  │  ├─ AuctionDetailView.tsx
+│  │  ├─ Navbar/
+│  │  ├─ Profile/
+│  │  └─ User/              # login/register/forgot/change-password modals
+│  ├─ hooks/                # e.g. useMyAuctions, useLogin, useRegister
+│  ├─ services/             # axios wrappers for API (auction, user, auth)
+│  ├─ stores/               # MobX stores (authStore)
+│  ├─ types/                # TS types for Auction, User, Bid
+│  ├─ utils/                # helpers (time formatting, etc.)
+│  ├─ App.tsx
+│  └─ main.tsx
+├─ .env
+├─ package.json
+└─ README.md
+```
+
+---
+
+## UI & Styling
+
+- **styled-components** for scoped styles.
+- **Design**: built against Figma mockups (consistent spacing, typography, responsive layouts).
+- **Reusable components**: `InputField`, `FormLayout`, `Button`, `Card`.
+
+---
+
+## API Integration
+
+- API base URL configured via `VITE_API_URL`.
+- Uses Axios with `withCredentials` enabled (cookies for JWT).
+- Services (`src/services/*.ts`) wrap endpoints for:
+  - `auth` (login, register, refresh, logout, change password)
+  - `user` (profile update, avatar upload)
+  - `auction` (CRUD, bidding, fetch one/all)
+
+---
+
+## Profile & Modals
+
+- **ProfileSettingsModal**: edit profile info.
+- **ChangePasswordModal**: update password via `/me/update-password`.
+- **ChangeAvatarModal**: upload new profile picture.
+- **EditAuctionModal**: edit title/description/end date/image (startingBid locked once bids exist).
+
+---
+
