@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from '../Button'
 import { theme } from '../../styles/theme'   
+import { useNavigate } from 'react-router-dom'
 
 const Section = styled.section`
   text-align: center;
@@ -28,13 +29,17 @@ const Subtitle = styled.p`
   line-height: 1.5; 
 `
 
-export const Hero: React.FC = () => (
-  <Section>
-    <Title>E-auctions made easy!</Title>
-    <Subtitle>
-      Simple way for selling your unused products, or <br />
-      getting a deal on product you want!
-    </Subtitle>
-    <Button variant="primary">Start bidding</Button>
-  </Section>
-)
+export const Hero: React.FC = () => {
+  const navigate = useNavigate();
+
+  return (
+      <Section>
+        <Title>E-auctions made easy!</Title>
+        <Subtitle>
+          Simple way for selling your unused products, or <br />
+        getting a deal on product you want!
+      </Subtitle>
+      <Button variant="primary" onClick={() => navigate('/signup')}>Start bidding</Button>
+    </Section>
+  )
+}
