@@ -345,7 +345,7 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
                   <AvatarImg
                     src={
                       bid.user.avatar
-                        ? `${import.meta.env.VITE_API_URL || ''}/files/${bid.user.avatar}`
+                        ? bid.user.avatar
                         : defaultAvatar
                     }
                     alt={`${bid.user.first_name} ${bid.user.last_name}`}
