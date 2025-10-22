@@ -101,7 +101,7 @@ const Navbar: React.FC = () => {
           >
             {authStore.user?.avatar ? (
             <img
-              src={`${import.meta.env.VITE_API_URL || ''}/files/${authStore.user.avatar}`}
+              src={authStore.user.avatar}
               alt="User avatar"
             />
           ) : (

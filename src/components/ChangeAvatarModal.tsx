@@ -36,7 +36,7 @@ const ChangeAvatarModal: React.FC<Props> = ({ onClose }) => {
   const fileInput = useRef<HTMLInputElement>(null);
 
   const [preview, setPreview] = useState<string>(
-    user.avatar ? `${import.meta.env.VITE_API_URL || ''}/files/${user.avatar}` : ''
+    user.avatar ? user.avatar : ''
   );
   const [file, setFile]       = useState<File | null>(null);
   const [loading, setLoading] = useState(false);

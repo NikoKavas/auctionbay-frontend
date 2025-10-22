@@ -170,7 +170,7 @@ export const AuctionCard: React.FC<Props> = observer(
       <Price>{priceToShow.toFixed(0)} €</Price>
 
       <ImageWrapper>
-        <Img src={`${import.meta.env.VITE_API_URL || ''}/files/${current.image}`} />
+        <Img src={current.image} alt={current.title} />
       </ImageWrapper>
       
        {!hideActions && context !== 'bidding' && hours > 0 &&  (

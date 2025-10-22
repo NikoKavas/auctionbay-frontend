@@ -271,7 +271,7 @@ const AuctionDetailView: React.FC<Props> = ({ auction }) => {
     <Container>
       <LeftPanel>
         <LeftImage
-          src={`${import.meta.env.VITE_API_URL}/files/${auction.image}`}
+          src={auction.image}
           alt={auction.title}
         />
       </LeftPanel>
