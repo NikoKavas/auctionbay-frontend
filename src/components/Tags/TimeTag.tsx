@@ -1,7 +1,7 @@
 // src/components/Tags/TimeTag.tsx
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { getRemainingHours } from '../../utils/time'
+import { getRemainingHours, getRemainingTimeLabel } from '../../utils/time'
 
 interface Props {
   endTime: string | number
@@ -22,11 +22,12 @@ const Tag = styled.div<{ hot: boolean }>`
 
 export const TimeTag: React.FC<Props> = ({ endTime, className  }) => {
   const hours = getRemainingHours(endTime)
+  const label = getRemainingTimeLabel(endTime)
   const hot = hours <= 24 && hours > 0
 
   return (
     <Tag hot={hot} className={className}>
-      {hours}h
+      {label}
       <svg
         width="12"
         height="12"

@@ -127,6 +127,7 @@ export const AuctionCard: React.FC<Props> = observer(
   if (deleted) return null
 
   const hours = getRemainingHours(current.endTime)
+  const displayTime = getRemainingTimeLabel(current.endTime)
 
   const hasBids     = current.bids?.length > 0
   const highest     = hasBids ? Math.max(...current.bids.map(b => b.amount)) : current.startingBid
@@ -148,8 +149,6 @@ export const AuctionCard: React.FC<Props> = observer(
     } else {
       tag = hours > 0 ? 'inprogress' : 'done'
     }
-
-    
 
   return (
     <>
