@@ -14,7 +14,7 @@ export default function App() {
       .then((me) => authStore.login(me))
       .catch(() => authStore.logout())
   }, [])
-
+console.log(import.meta.env.VITE_API_URL);
   return (
     <ThemeProvider theme={theme}>
       <div>< Toaster/></div>
