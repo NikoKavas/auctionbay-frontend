@@ -127,6 +127,15 @@ export const AuctionCard: React.FC<Props> = observer(
   if (deleted) return null
 
   const hours = getRemainingHours(current.endTime)
+  // Extract total hours as a number for logic (handles "3d 5h" or "20h")
+  const numericHours = (() => {
+    const match = hours.match(/(?:(\d+)d\s*)?(\d+)h/)
+    if (!match) return 0
+    const days = match[1] ? parseInt(match[1]) : 0
+    const hrs = parseInt(match[2])
+    return days * 24 + hrs
+  })()
+
 
   const hasBids     = current.bids?.length > 0
   const highest     = hasBids ? Math.max(...current.bids.map(b => b.amount)) : current.startingBid
@@ -135,10 +144,10 @@ export const AuctionCard: React.FC<Props> = observer(
   const highestBid = current.bids?.find(b => b.amount === highest)
   const amWinning  = highestBid?.userId === authStore.user?.id
 
-  if (context === 'bidding' && hours <= 0) return null
+  if (context === 'bidding' && numericHours <= 0) return null
   
   if (context === 'won') {
-     if (hours > 0)      return null          
+     if (numericHours > 0)   return null          
      if (!amWinning)     return null          
    }
 
@@ -146,7 +155,7 @@ export const AuctionCard: React.FC<Props> = observer(
     if (context === 'bidding') {
       tag = amWinning ? 'winning' : 'outbid'
     } else {
-      tag = hours > 0 ? 'inprogress' : 'done'
+      tag = numericHours > 0 ? 'inprogress' : 'done'
     }
 
     
@@ -163,7 +172,7 @@ export const AuctionCard: React.FC<Props> = observer(
                :                        'Outbid'}
             </Tag>
 
-            {hours > 0 && <TimeTag endTime={current.endTime} />}
+            {numericHours > 0 && <TimeTag endTime={current.endTime} />}
         
       </Header>
       <Title>{current.title}</Title>
@@ -173,7 +182,7 @@ export const AuctionCard: React.FC<Props> = observer(
         <Img src={current.image} alt={current.title} />
       </ImageWrapper>
       
-       {!hideActions && context !== 'bidding' && hours > 0 &&  (
+       {!hideActions && context !== 'bidding' && numericHours > 0 &&  (
       <Actions>
         <DeleteButton onClick={async (e) => {
                     e.preventDefault()
