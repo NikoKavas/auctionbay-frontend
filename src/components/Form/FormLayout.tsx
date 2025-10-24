@@ -8,7 +8,7 @@ export const PageWrapper = styled.div`
   align-items: center;
   background: #f6f6f4;
   height: 100vh; /* fill screen exactly */
-  overflow: hidden; /* no scrollbars */
+  overflow: hidden; 
   width: 100vw;
   margin: 0;
   padding: 0;
