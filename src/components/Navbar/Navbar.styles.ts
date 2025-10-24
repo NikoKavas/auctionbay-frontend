@@ -11,12 +11,34 @@ export const Nav = styled.nav`
   box-sizing: border-box;
   height: 104px;
   margin: 0 auto;
+
+  @media (max-width: 1024px) {
+    padding: 0px 16px;
+    gap: 12px;
+  }
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 12px 16px;
+    justify-content: center;
+  }
 `
 
 export const LeftGroup = styled.div`
   display: flex;
   align-items: center;
   gap: 32px;
+
+  @media (max-width: 1024px) {
+    gap: 16px;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 8px;
+  }
   
 `
 
@@ -26,10 +48,20 @@ export const RightGroup = styled.div`
   padding: 4px;
   gap: 8px;
   
-
-
   background: #FFFFFF;
   border-radius: 32px;
+
+  @media (max-width: 1024px) {
+    gap: 4px;
+    padding: 2px;
+  }
+
+  /* ✅ Move to new line on small screens */
+  @media (max-width: 768px) {
+    margin-top: 8px;
+    width: 100%;
+    justify-content: center;
+  }
 `
 
 export const PlusButton = styled.button`
@@ -53,6 +85,12 @@ export const PlusButton = styled.button`
     height: 24px;
     fill: #071015;
   }
+
+  @media (max-width: 768px) {
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+  }
 `
 
 export const LogoLink = styled(Link)`
@@ -68,6 +106,14 @@ export const TabGroup = styled.div`
   border-radius: 32px;
   padding: 4px;           
   gap: 4px;               
+
+   @media (max-width: 768px) {
+    gap: 2px;
+
+    a span {
+      display: none; /* hide tab text, only show icons */
+    }
+  }
 `
 
 export const Tab = styled(Link)<{ active?: boolean }>`
