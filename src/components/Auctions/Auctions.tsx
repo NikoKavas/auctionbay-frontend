@@ -9,6 +9,18 @@ const AuctionsGrid = styled.div`
   grid-template-columns: repeat(12, 1fr);
   gap: 24px;
   width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr; /* single column on phones */
+  }
 `
 const CardWrapper = styled.div`
   grid-column: span 2;
