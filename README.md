@@ -1,7 +1,6 @@
 # 🎨 AuctionBay — Frontend (React + Vite + TypeScript)
 
 ![AuctionBay Cover](./public/aaa.png)  
-> *(Insert your cover image here — e.g. app screenshot or banner)*  
 
 Responsive and modern **frontend for AuctionBay**, a full-stack online auction platform.  
 Includes authentication, profile management, auctions listing/detail, bidding system, and profile tabs (My / Bidding / Won).
